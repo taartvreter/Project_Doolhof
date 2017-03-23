@@ -12,12 +12,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Frenky
  */
-public class Game implements Runnable 
+public class Game extends JPanel implements Runnable 
 {
 
     private Display display;
@@ -41,7 +42,7 @@ public class Game implements Runnable
 
     private void init() {
         display = new Display(title, width, height);
-        testImage = ImageLoader.LoadImage("/textures/sheet.png");
+        testImage = ImageLoader.LoadImage("/textures/shee1t.png");
         sheet = new SpriteSheet(testImage);
     }
 
@@ -50,23 +51,24 @@ public class Game implements Runnable
     }
 
     private void render() {
-        bs = display.getCanvas().getBufferStrategy();
-        if(bs == null){
-            display.getCanvas().createBufferStrategy(3);
-            return;
-        }
+//        bs = display.getCanvas().getBufferStrategy();
+//        if(bs == null){
+//            display.getCanvas().createBufferStrategy(3);
+//            return;
+//        }
+//        g = bs.getDrawGraphics();
         
-        g = bs.getDrawGraphics();
+        
         //clear Screen
-        g.clearRect(0, 0, width, height);
+//        g.clearRect(0, 0, width, height);
         // Draw Here!
         
-        g.drawImage(testImage, 200, 60, null);
-        g.drawImage(sheet.crop(60, 20, 80, 80), 20, 20, null);
+//        g.drawImage(testImage, 200, 60, null);
+//        g.drawImage(sheet.crop(60, 20, 80, 80), 20, 20, null);
         
         //End Drawing
-        bs.show();
-        g.dispose();
+//        bs.show();
+//        g.dispose();
     }
 
     @Override

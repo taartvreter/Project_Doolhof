@@ -8,6 +8,7 @@ package display;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,7 +17,8 @@ import javax.swing.JFrame;
 public class Display {
 
     private JFrame frame;
-    private Canvas canvas;
+//    private Canvas canvas;
+    private JPanel jpanel;
 
     private String title;
     private int width, height;
@@ -38,14 +40,21 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-
-        frame.add(canvas);
+//        canvas = new Canvas();
+//        canvas.setPreferredSize(new Dimension(width, height));
+        jpanel = new JPanel();
+        jpanel.setPreferredSize(new Dimension(width, height));
+            
+//        frame.add(canvas);
+        frame.add(jpanel);
         frame.pack();
     }
     
-    public Canvas getCanvas(){
-        return canvas;
-    }
+//    public Canvas getCanvas(){
+//        return canvas;
+//    }
+    
+        public JPanel getJPanel(){
+            return jpanel;
+        }
 }

@@ -88,7 +88,7 @@ public class SleuteldoolhofAfbeelding extends JComponent {
             @SuppressWarnings("UnusedAssignment")
             int yBarricade = 0;
 
-            this.test = ImageLoader.LoadImage("/textures/sheet.png");
+            this.test = LoadImage("/textures/sheet.png");
            
             
             int randomInt = randomGenerator.nextInt(1000);  //genereer random getal tot 1000
@@ -135,15 +135,15 @@ public class SleuteldoolhofAfbeelding extends JComponent {
     
   
     
-//    public static BufferedImage LoadImage(String path){
-//        try {
-//            return ImageIO.read(SleuteldoolhofAfbeelding.class.getResource(path));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.exit(1);
-//        }
-//        return null;
-//    }
+    public static BufferedImage LoadImage(String path){
+        try {
+            return ImageIO.read(SleuteldoolhofAfbeelding.class.getResource(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
+    }
 
     /*
     private void laadSleuteldoolhof(){

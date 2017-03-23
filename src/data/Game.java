@@ -51,24 +51,23 @@ public class Game extends JPanel implements Runnable
     }
 
     private void render() {
-//        bs = display.getCanvas().getBufferStrategy();
-//        if(bs == null){
-//            display.getCanvas().createBufferStrategy(3);
-//            return;
-//        }
-//        g = bs.getDrawGraphics();
-        
+        bs = display.getCanvas().getBufferStrategy();
+        if(bs == null){
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
+        g = bs.getDrawGraphics();
         
         //clear Screen
-//        g.clearRect(0, 0, width, height);
+        g.clearRect(0, 0, width, height);
         // Draw Here!
         
-//        g.drawImage(testImage, 200, 60, null);
-//        g.drawImage(sheet.crop(60, 20, 80, 80), 20, 20, null);
+        g.drawImage(testImage, 200, 60, null);
+        g.drawImage(sheet.crop(60, 20, 80, 80), 20, 20, null);
         
         //End Drawing
-//        bs.show();
-//        g.dispose();
+        bs.show();
+        g.dispose();
     }
 
     @Override

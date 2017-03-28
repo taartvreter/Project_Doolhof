@@ -5,7 +5,10 @@
  */
 package data;
 
+import State.GameState;
+import State.State;
 import display.Display;
+import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 import java.awt.Color;
@@ -18,8 +21,7 @@ import javax.swing.JPanel;
  *
  * @author Frenky
  */
-public class Game extends JPanel implements Runnable 
-{
+public class Game extends JPanel implements Runnable {
 
     private Display display;
     public int width, height;
@@ -27,13 +29,13 @@ public class Game extends JPanel implements Runnable
 
     private Thread thread;
     private boolean isRunning = false;
-    
+
     private BufferStrategy bs;
     private Graphics g;
     
-    private BufferedImage testImage;
-    private SpriteSheet sheet;
-    
+    //State
+    private State gameState;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -42,29 +44,31 @@ public class Game extends JPanel implements Runnable
 
     private void init() {
         display = new Display(title, width, height);
-        testImage = ImageLoader.LoadImage("/textures/shee1t.png");
-        sheet = new SpriteSheet(testImage);
+        Assets.init();
+        
+        gameState = new GameState();
+        State.setState(gameState);
     }
 
     private void tick() {
-
+       if(State.getState() != null)
+           State.getState().tick();
     }
 
     private void render() {
         bs = display.getCanvas().getBufferStrategy();
-        if(bs == null){
+        if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
         g = bs.getDrawGraphics();
-        
         //clear Screen
         g.clearRect(0, 0, width, height);
         // Draw Here!
-        
-        g.drawImage(testImage, 200, 60, null);
-        g.drawImage(sheet.crop(60, 20, 80, 80), 20, 20, null);
-        
+
+       if(State.getState() != null)
+           State.getState().render(g);
+
         //End Drawing
         bs.show();
         g.dispose();
@@ -75,11 +79,33 @@ public class Game extends JPanel implements Runnable
 
         init();
 
-        while (isRunning) {
-            tick();
-            render();
-        }
+        int fps = 60;
+        double timePerTick = 1000000000 / fps;
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime();
+        long timer = 0;
+        int ticks = 0;
 
+        while (isRunning) {
+            now = System.nanoTime();
+            delta += (now - lastTime) / timePerTick;
+            timer += now - lastTime;
+            lastTime = now;
+
+            if (delta >= 1) {
+                tick();
+                render();
+                ticks++;
+                delta--;
+            }
+
+            if (timer >= 1000000000) {
+                System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
+        }
         stop();
     }
 

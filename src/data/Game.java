@@ -27,6 +27,8 @@ public class Game extends JPanel implements Runnable {
     public int width, height;
     public String title;
     
+    private int breedte = 70, hoogte = 70;
+    
     
 
     private Thread thread;
@@ -70,7 +72,8 @@ public class Game extends JPanel implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // Draw Here!
-   
+        
+        
         for(int i = 0; i <= 10; i++){
             g.drawLine((i*70), 0, (i*70), 700); 
         }
@@ -78,8 +81,9 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i*70), 700, (i*70)); 
         }
         
+        
         g.drawImage(Assets.player, 0,0, this);
-        g.drawImage(Assets.dirt, 0,630, this);
+
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();

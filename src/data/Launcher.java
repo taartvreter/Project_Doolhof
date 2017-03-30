@@ -11,7 +11,7 @@ package data;
  */
 public class Launcher {
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         Game game = new Game("Project", 800, 800);
         game.start();
     }

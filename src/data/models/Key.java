@@ -10,7 +10,18 @@ package models;
  * @author hwpva
  */
 public class Key {
+
     private int pinCode = 0;
-    public Key(){
+
+    public Key() {
+        java.util.Random rand = new java.util.Random(100);
+    }
+
+    public int getKeyCode() {
+        return this.pinCode;
+    }
+
+    public boolean canWalkThrough() {
+        return true;
     }
 }

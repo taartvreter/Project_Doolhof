@@ -11,18 +11,10 @@ import data.GameElement;
  *
  * @author hwpva
  */
-public class Barricade extends GameElement{
-
-    private int pinCode;
-
-    public Barricade() {
-    }
-
+public class Wall extends GameElement {
+    
+    @Override
     public boolean canWalkThrough() {
         return false;
-    }
-
-    public int getPinCode() {
-        return this.pinCode;
     }
 }

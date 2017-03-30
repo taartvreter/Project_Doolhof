@@ -6,12 +6,22 @@
 
 package data.model;
 
+import java.awt.image.BufferedImage;
+
 
 /**
  *
  * @author hwpva
  */
 public class EndTile extends Tile{
+
+    public EndTile(int positionX, int positionY) {
+        super(positionX, positionY);
+    }
+    
+  /*  public BufferedImage getImage(){
+
+    }*/
     public void showWinningMessage(){
         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(),"Winnaar die je bent ;)!");
     }

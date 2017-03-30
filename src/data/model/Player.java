@@ -32,6 +32,6 @@ public class Player {
     }
 
     public int getKeyPinCode() {
-        return this.keyPocket.getKeyCode();
+        return this.keyPocket.getKeyPinCode();
     }
 }

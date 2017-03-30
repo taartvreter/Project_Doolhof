@@ -6,12 +6,14 @@
 
 package data.model;
 
+import data.GameElement;
+
 
 /**
  *
  * @author hwpva
  */
-public class Key {
+public class Key extends GameElement {
 
     private int pinCode = 0;
 
@@ -19,7 +21,7 @@ public class Key {
         java.util.Random rand = new java.util.Random(100);
     }
 
-    public int getKeyCode() {
+    public int getKeyPinCode() {
         return this.pinCode;
     }
 

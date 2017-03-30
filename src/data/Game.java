@@ -81,7 +81,7 @@ public class Game extends JPanel implements Runnable {
         }
         
         g.drawImage(Assets.player, 0,0, this);
-        g.drawImage(Assets.dirt, 0,70, this);
+        g.drawImage(Assets.dirt, 0,630, this);
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();

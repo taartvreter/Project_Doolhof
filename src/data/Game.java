@@ -73,7 +73,6 @@ public class Game extends JPanel implements Runnable {
 
         // Draw Here!
         
-        g.drawImage(Assets.grass, 0, 0, this);
         
         for(int i = 0; i <= 10; i++){
             g.drawLine((i*70), 0, (i*70), 700); 
@@ -84,11 +83,7 @@ public class Game extends JPanel implements Runnable {
         
         
         g.drawImage(Assets.player, 0,0, this);
-        g.drawImage(Assets.player, 0,4*hoogte, this);
-        g.drawImage(Assets.dirt, 0, 5*hoogte, this);
-        g.drawImage(Assets.grass, 0, 3*hoogte, this);
-        g.drawImage(Assets.stone, 9*breedte, 9*hoogte, this);
-        
+
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();

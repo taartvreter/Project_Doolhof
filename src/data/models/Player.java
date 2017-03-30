@@ -10,5 +10,27 @@ package models;
  * @author hwpva
  */
 public class Player {
+
     private String name = "Hope Solo";
+    private Key keyPocket;
+
+    public Player() {
+    }
+
+    public void move() {
+    }
+
+    public void openBarricade() {
+    }
+
+    public void checkKeyPocket() {
+    }
+
+    public void pickUpKey() {
+    }
+
+    public int getKeyPinCode() {
+        return this.keyPocket.getPinCode();
+    }
+
 }

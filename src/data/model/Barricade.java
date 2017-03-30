@@ -9,10 +9,6 @@ package data.model;
  *
  * @author hwpva
  */
-public class Tile {
-    private int locationX;
-    private int locationY;
+public class Barricade {
     
-    public Tile(){
-    }
 }

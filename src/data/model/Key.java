@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD
+
 package data.model;
-=======
-package data.models;
->>>>>>> master
+
 
 /**
  *

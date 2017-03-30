@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class Assets {
     
-    private static final int width = 53, height = 43;
+    private static final int width = 70, height = 70;
     
     public static BufferedImage player, dirt, grass, stone, tree;
     

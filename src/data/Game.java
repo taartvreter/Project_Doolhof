@@ -69,7 +69,9 @@ public class Game extends JPanel implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // Draw Here!
-   
+        
+        g.drawImage(Assets.grass, 0, 0, this);
+        
         for(int i = 0; i <= 10; i++){
             g.drawLine((i*100), 0, (i*100), 1000); 
         }

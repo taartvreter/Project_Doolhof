@@ -12,7 +12,7 @@ package data;
 public class Launcher {
     
     public static void main(String[] args){
-        Game game = new Game("This game is for nuubs", 900, 600);
+        Game game = new Game("Project", 1000, 1000);
         game.start();
     }
 }

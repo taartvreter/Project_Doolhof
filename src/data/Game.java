@@ -26,13 +26,14 @@ public class Game extends JPanel implements Runnable {
     private Display display;
     public int width, height;
     public String title;
+    
 
     private Thread thread;
     private boolean isRunning = false;
 
     private BufferStrategy bs;
     private Graphics g;
-    
+
     //State
     private State gameState;
 
@@ -45,14 +46,15 @@ public class Game extends JPanel implements Runnable {
     private void init() {
         display = new Display(title, width, height);
         Assets.init();
-        
+
         gameState = new GameState();
         State.setState(gameState);
     }
 
     private void tick() {
-       if(State.getState() != null)
-           State.getState().tick();
+        if (State.getState() != null) {
+            State.getState().tick();
+        }
     }
 
     private void render() {
@@ -63,12 +65,19 @@ public class Game extends JPanel implements Runnable {
         }
         g = bs.getDrawGraphics();
         //clear Screen
+
         g.clearRect(0, 0, width, height);
+
         // Draw Here!
+   
+        for(int i = 0; i <= 10; i++){
+            g.drawLine((i*100), 0, (i*100), 1000); 
+        }
+        for(int i = 0; i <= 10; i++){
+            g.drawLine(0, (i*100), 1000, (i*100)); 
+        }
 
-       if(State.getState() != null)
-           State.getState().render(g);
-
+        //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();
         g.dispose();

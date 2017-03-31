@@ -50,6 +50,7 @@ public class Game extends JPanel implements Runnable {
         display = new Display(title, width, height);
         Assets.init();
 
+        this.setFocusable(true);
         gameState = new GameState();
         State.setState(gameState);
     }

@@ -75,8 +75,6 @@ public class Game extends JPanel implements Runnable {
 
     private void render() {
         bs = display.getCanvas().getBufferStrategy();
-        LevelGetter levelG = new LevelGetter();
-        maze = levelG.loadMapToArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
 
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
@@ -110,6 +108,8 @@ public class Game extends JPanel implements Runnable {
     public void run() {
 
         init();
+
+        Tile[][] levelMap = new LevelGetter().loadMapToArray();  //het laden van een level in een array. Dit staat hier tijdelijk.
 
         int fps = 60;
         double timePerTick = 1000000000 / fps;

@@ -99,9 +99,6 @@ public class Game extends JPanel implements Runnable {
         g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
         g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
 
-        String blokje = maze[9][9].toString();
-        System.out.println(blokje);
-        //g.drawImage(Assets.blokje, breedte*3,hoogte*2, this);
 
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing

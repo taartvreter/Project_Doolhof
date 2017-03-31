@@ -9,14 +9,14 @@ import java.util.Arrays;
 
 public class LevelGetter {
     
-    
+           static int cols = 10;
+       static int rows = 10;
+        
+       static Tile[][] mazeTiles = new Tile[cols][rows];
 
     public static Tile[][] laadLevelInArray() {  //laad een level in een 2d array.
 
-        int cols = 10;
-        int rows = 10;
-        
-        Tile[][] mazeTiles = new Tile[cols][rows];
+ 
 
         //Aangeven waar de textfile zich bevind
         String fileLocation = "./res/textures/test.txt";

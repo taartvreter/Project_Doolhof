@@ -18,7 +18,7 @@ public class LevelGetter {
         String[][] myArray = new String[cols][rows];
 
         //Aangeven waar de textfile zich bevind
-        String fileLocation = "C:/Users/Jim/Documents/NetBeansProjects/HetGoedeProject/res/textures/test.txt";
+        String fileLocation = "./res/textures/test.txt";
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileLocation));
@@ -31,10 +31,6 @@ public class LevelGetter {
 
                 String[] result = fileLocation.split(",");
 
-//                if (previousLineNumber != lineNumber) {
-//                    System.out.println("");
-//                    previousLineNumber++;
-//                }
                 lineNumber++;
 
                 for (int x = 0; x < result.length; x++) {
@@ -50,8 +46,15 @@ public class LevelGetter {
                     i++;
                 }
             }
+            
+            for(int a = 0; a<10;a++){
+                for(int b = 0; b<10; b++){
+                    System.out.print(myArray[a][b] + " ");
+                }
+                System.out.println("");
+            }
 
-            System.out.println(Arrays.deepToString(myArray));  //uitprinten om te testen of het goed gaat.
+            //System.out.println(Arrays.deepToString(myArray));  //uitprinten om te testen of het goed gaat.
            
            
            

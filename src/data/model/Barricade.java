@@ -16,6 +16,7 @@ public class Barricade extends GameElement{
     public Barricade() {
     }
 
+    @Override
     public boolean canWalkThrough() {
         return false;
     }

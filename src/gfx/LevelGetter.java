@@ -1,5 +1,6 @@
 package gfx;
 
+import data.model.Tile;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,15 +8,15 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class LevelGetter {
+    
+    
 
-    static String xStrPath;
-    static double[][] myArray;
-
-    public static String[][] laadLevelInArray() {  //laad een level in een 2d array.
+    public static Tile[][] laadLevelInArray() {  //laad een level in een 2d array.
 
         int cols = 10;
         int rows = 10;
-        String[][] myArray = new String[cols][rows];
+        
+        Tile[][] mazeTiles = new Tile[cols][rows];
 
         //Aangeven waar de textfile zich bevind
         String fileLocation = "./res/textures/test.txt";
@@ -42,7 +43,8 @@ public class LevelGetter {
                         previousLineNumber++;
                     }
 
-                    myArray[j][i] = huidig;
+                    
+                    mazeTiles[j][i] = new Tile(i,j);
                     i++;
                 }
             }
@@ -65,7 +67,7 @@ public class LevelGetter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return myArray;
+        return mazeTiles;
     }
     
 }

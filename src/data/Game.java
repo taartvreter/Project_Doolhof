@@ -7,6 +7,7 @@ package data;
 
 import State.GameState;
 import State.State;
+import data.model.Tile;
 import display.Display;
 import gfx.Assets;
 import gfx.ImageLoader;
@@ -26,6 +27,8 @@ import java.awt.event.KeyEvent;
  * @author Frenky
  */
 public class Game extends JPanel implements Runnable {
+    
+    private Tile[][] maze;
 
     private Display display;
     public int width, height;
@@ -72,7 +75,7 @@ public class Game extends JPanel implements Runnable {
 
     private void render() {
         bs = display.getCanvas().getBufferStrategy();
-        String[][] myArray = LevelGetter.laadLevelInArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
+         maze = LevelGetter.laadLevelInArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
 
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
@@ -96,7 +99,7 @@ public class Game extends JPanel implements Runnable {
         g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
         g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
 
-        String blokje = myArray[9][9];
+        String blokje = maze[9][9].toString();
         System.out.println(blokje);
         //g.drawImage(Assets.blokje, breedte*3,hoogte*2, this);
 

@@ -17,6 +17,9 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Frenky
@@ -26,10 +29,8 @@ public class Game extends JPanel implements Runnable {
     private Display display;
     public int width, height;
     public String title;
-    
+
     private int breedte = 70, hoogte = 70;
-    
-    
 
     private Thread thread;
     private boolean isRunning = false;
@@ -50,6 +51,12 @@ public class Game extends JPanel implements Runnable {
         display = new Display(title, width, height);
         Assets.init();
 
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e){
+                System.out.println("d");
+            }
+        });
         this.setFocusable(true);
         gameState = new GameState();
         State.setState(gameState);
@@ -73,17 +80,14 @@ public class Game extends JPanel implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // Draw Here!
-        
-        
-        for(int i = 0; i <= 10; i++){
-            g.drawLine((i*70), 0, (i*70), 700); 
+        for (int i = 0; i <= 10; i++) {
+            g.drawLine((i * 70), 0, (i * 70), 700);
         }
-        for(int i = 0; i <= 10; i++){
-            g.drawLine(0, (i*70), 700, (i*70)); 
+        for (int i = 0; i <= 10; i++) {
+            g.drawLine(0, (i * 70), 700, (i * 70));
         }
-        
-        
-        g.drawImage(Assets.player, 0,0, this);
+
+        g.drawImage(Assets.player, 0, 0, this);
 
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing

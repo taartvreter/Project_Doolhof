@@ -5,8 +5,6 @@
  */
 package data.model;
 
-import data.GameElement;
-
 /**
  *
  * @author hwpva

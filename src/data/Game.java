@@ -10,6 +10,7 @@ import State.State;
 import display.Display;
 import gfx.Assets;
 import gfx.ImageLoader;
+import gfx.LevelGetter;
 import gfx.SpriteSheet;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -60,6 +61,7 @@ public class Game extends JPanel implements Runnable {
         this.setFocusable(true);
         gameState = new GameState();
         State.setState(gameState);
+        LevelGetter.laadLevelInArray();   //het laden van een level in een array.
     }
 
     private void tick() {
@@ -134,6 +136,7 @@ public class Game extends JPanel implements Runnable {
         if (isRunning) {
             return;
         }
+
         isRunning = true;
         thread = new Thread(this);
         thread.start();

@@ -11,6 +11,8 @@ package data.model;
  */
 public class Tile {
 
+    private GameElement standingObject;
+
     private final int locationX;
     private final int locationY;
 
@@ -25,5 +27,13 @@ public class Tile {
 
     public int getLocationY() {
         return this.locationY;
+    }
+
+    public void setStandingObject(GameElement newStandingObject) {
+        this.standingObject = newStandingObject;
+    }
+
+    public GameElement getStandingObject() {
+        return this.standingObject;
     }
 }

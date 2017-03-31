@@ -10,6 +10,7 @@ import State.State;
 import display.Display;
 import gfx.Assets;
 import gfx.ImageLoader;
+import gfx.LevelGetter;
 import gfx.SpriteSheet;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -26,10 +27,8 @@ public class Game extends JPanel implements Runnable {
     private Display display;
     public int width, height;
     public String title;
-    
+
     private int breedte = 70, hoogte = 70;
-    
-    
 
     private Thread thread;
     private boolean isRunning = false;
@@ -52,6 +51,7 @@ public class Game extends JPanel implements Runnable {
 
         gameState = new GameState();
         State.setState(gameState);
+        LevelGetter.laadLevelInArray();   //het laden van een level in een array.
     }
 
     private void tick() {
@@ -72,17 +72,14 @@ public class Game extends JPanel implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // Draw Here!
-        
-        
-        for(int i = 0; i <= 10; i++){
-            g.drawLine((i*70), 0, (i*70), 700); 
+        for (int i = 0; i <= 10; i++) {
+            g.drawLine((i * 70), 0, (i * 70), 700);
         }
-        for(int i = 0; i <= 10; i++){
-            g.drawLine(0, (i*70), 700, (i*70)); 
+        for (int i = 0; i <= 10; i++) {
+            g.drawLine(0, (i * 70), 700, (i * 70));
         }
-        
-        
-        g.drawImage(Assets.player, 0,0, this);
+
+        g.drawImage(Assets.player, 0, 0, this);
 
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
@@ -129,6 +126,7 @@ public class Game extends JPanel implements Runnable {
         if (isRunning) {
             return;
         }
+
         isRunning = true;
         thread = new Thread(this);
         thread.start();

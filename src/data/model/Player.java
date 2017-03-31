@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data.model;
-
 
 /**
  *
@@ -33,5 +31,9 @@ public class Player {
 
     public int getKeyPinCode() {
         return this.keyPocket.getKeyPinCode();
+    }
+
+    public String getName() {
+        return this.getName();
     }
 }

@@ -18,4 +18,12 @@ public class Tile {
         this.locationX = positionX;
         this.locationY = positionY;
     }
+
+    public int getLocationX() {
+        return this.locationX;
+    }
+
+    public int getLocationY() {
+        return this.locationY;
+    }
 }

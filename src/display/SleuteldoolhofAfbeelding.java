@@ -1,4 +1,4 @@
-package game;
+package display;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,7 @@ package game;
  * and open the template in the editor.
  */
 import com.sun.javafx.iio.ImageLoader;
-import static game.SleuteldoolhofAfbeelding.LoadImage;
+import static display.SleuteldoolhofAfbeelding.LoadImage;
 import java.awt.Color;
 import javax.swing.JComponent;
 import java.awt.Dimension;

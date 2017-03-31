@@ -21,6 +21,7 @@ public class Tile {
         this.locationY = positionY;
     }
 
+
     public int getLocationX() {
         return this.locationX;
     }

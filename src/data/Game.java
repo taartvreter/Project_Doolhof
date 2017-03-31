@@ -27,7 +27,7 @@ import java.awt.event.KeyEvent;
  * @author Frenky
  */
 public class Game extends JPanel implements Runnable {
-    
+
     private Tile[][] maze;
 
     private Display display;
@@ -57,7 +57,7 @@ public class Game extends JPanel implements Runnable {
 
         this.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent e){
+            public void keyReleased(KeyEvent e) {
                 System.out.println("d");
             }
         });
@@ -75,7 +75,8 @@ public class Game extends JPanel implements Runnable {
 
     private void render() {
         bs = display.getCanvas().getBufferStrategy();
-         maze = LevelGetter.laadLevelInArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
+        LevelGetter levelG = new LevelGetter();
+        maze = levelG.loadMapToArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
 
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
@@ -98,7 +99,6 @@ public class Game extends JPanel implements Runnable {
         g.drawImage(Assets.endTile, breedte * 9, hoogte * 9, this);
         g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
         g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
-
 
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing

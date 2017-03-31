@@ -14,12 +14,12 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     private static final int width = 70, height = 70;
-
+    
     public static BufferedImage barricade, player, wall, endTile, tree, cube;
-
-    public static void init() {
-        SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/sheet1.png"));
-
+    
+    public static void init(){
+        SpriteSheet sheet  = new SpriteSheet(ImageLoader.LoadImage("/textures/sheet1.png"));
+ 
         barricade = sheet.crop(0, 0, width, height);
         player = sheet.crop(width, 0, width, height);
         wall = sheet.crop(width * 2, 0, width, height);

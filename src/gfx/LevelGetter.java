@@ -11,7 +11,7 @@ public class LevelGetter {
     static String xStrPath;
     static double[][] myArray;
 
-    public static void laadLevelInArray() {  //laad een level in een 2d array.
+    public static String[][] laadLevelInArray() {  //laad een level in een 2d array.
 
         int cols = 10;
         int rows = 10;
@@ -47,12 +47,12 @@ public class LevelGetter {
                 }
             }
             
-            for(int a = 0; a<10;a++){
-                for(int b = 0; b<10; b++){
-                    System.out.print(myArray[a][b] + " ");
-                }
-                System.out.println("");
-            }
+//            for(int a = 0; a<10;a++){       //printen om te testen of het goed gaat
+//                for(int b = 0; b<10; b++){
+//                    System.out.print(myArray[a][b] + " ");
+//                }
+//                System.out.println("");
+//            }
 
             //System.out.println(Arrays.deepToString(myArray));  //uitprinten om te testen of het goed gaat.
            
@@ -65,7 +65,9 @@ public class LevelGetter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return myArray;
     }
+    
 }
 
    

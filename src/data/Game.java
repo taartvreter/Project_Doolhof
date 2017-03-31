@@ -51,7 +51,7 @@ public class Game extends JPanel implements Runnable {
 
         gameState = new GameState();
         State.setState(gameState);
-        LevelGetter.laadLevelInArray();   //het laden (en printen om te testen) van een level in een array. Dit staat hier tijdelijk.
+
     }
 
     private void tick() {
@@ -62,6 +62,8 @@ public class Game extends JPanel implements Runnable {
 
     private void render() {
         bs = display.getCanvas().getBufferStrategy();
+        String[][] myArray = LevelGetter.laadLevelInArray();   //het laden van een level in een array. Dit staat hier tijdelijk.
+
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
@@ -83,7 +85,11 @@ public class Game extends JPanel implements Runnable {
         g.drawImage(Assets.endTile, breedte * 9, hoogte * 9, this);
         g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
         g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
-        
+
+        String blokje = myArray[9][9];
+        System.out.println(blokje);
+        //g.drawImage(Assets.blokje, breedte*3,hoogte*2, this);
+
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();

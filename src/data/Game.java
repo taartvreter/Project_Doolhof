@@ -51,7 +51,7 @@ public class Game extends JPanel implements Runnable {
 
         gameState = new GameState();
         State.setState(gameState);
-        LevelGetter.laadLevelInArray();   //het laden van een level in een array.
+        LevelGetter.laadLevelInArray();   //het laden (en printen om te testen) van een level in een array. Dit staat hier tijdelijk.
     }
 
     private void tick() {
@@ -80,7 +80,10 @@ public class Game extends JPanel implements Runnable {
         }
 
         g.drawImage(Assets.player, 0, 0, this);
-
+        g.drawImage(Assets.endTile, breedte * 9, hoogte * 9, this);
+        g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
+        g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
+        
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();

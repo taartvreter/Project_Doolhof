@@ -6,6 +6,7 @@
 
 package data.model;
 
+import gfx.Assets;
 import java.awt.image.BufferedImage;
 
 
@@ -24,5 +25,10 @@ public class EndTile extends Tile{
     }*/
     public void showWinningMessage(){
         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(),"Winnaar die je bent ;)!");
+    }
+    
+    @Override
+    public BufferedImage getImage(){
+        return Assets.endTile;
     }
 }

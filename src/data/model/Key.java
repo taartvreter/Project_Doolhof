@@ -5,6 +5,7 @@
  */
 package data.model;
 
+import gfx.Assets;
 import java.awt.image.BufferedImage;
 
 /**
@@ -14,15 +15,19 @@ import java.awt.image.BufferedImage;
 public class Key extends GameElement {
 
     private int pinCode = 0;
+    private final BufferedImage image;
 
-    public Key() {
-        java.util.Random rand = new java.util.Random(100);
-
+    public Key(int pinCode) {
+        this.pinCode = pinCode;
+        //init Image with keycode
+        BufferedImage keyWithoutPinImg = Assets.key;
+        keyWithoutPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
+        this.image = keyWithoutPinImg;
     }
 
     @Override
     public BufferedImage getImage() {
-        return null;
+        return this.image;
     }
 
     public int getKeyPinCode() {

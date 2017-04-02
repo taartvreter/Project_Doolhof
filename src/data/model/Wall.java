@@ -26,7 +26,7 @@ public class Wall extends GameElement {
     }
 
     @Override
-    public BufferedImage getImage() {
+    public  BufferedImage getImage() {
         return this.image;
     }
 }

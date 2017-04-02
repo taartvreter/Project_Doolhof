@@ -13,19 +13,21 @@ import java.awt.image.BufferedImage;
  */
 public class Assets {
 
-    private static final int width = 70, height = 70;
-    
-    public static BufferedImage barricade, player, wall, endTile, tree, cube;
-    
-    public static void init(){
-        SpriteSheet sheet  = new SpriteSheet(ImageLoader.LoadImage("/textures/sheet1.png"));
- 
-        barricade = sheet.crop(0, 0, width, height);
-        player = sheet.crop(width, 0, width, height);
-        wall = sheet.crop(width * 2, 0, width, height);
-        endTile = sheet.crop(width * 3, 0, width, height);
-        tree = sheet.crop(0, height, width, height);
-        cube = sheet.crop(width * 4, 0, width, height);
+    private static final int WIDTH = 70, HEIGHT = 70;
+
+    public static BufferedImage barricade, player, wall, endTile, tree, cube, key;
+
+    public static void init() {
+        SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/sheet1.png"));
+
+        barricade = sheet.crop(0, 0, WIDTH, HEIGHT);
+        player = sheet.crop(WIDTH, 0, WIDTH, HEIGHT);
+        wall = sheet.crop(WIDTH * 2, 0, WIDTH, HEIGHT);
+        endTile = sheet.crop(WIDTH * 3, 0, WIDTH, HEIGHT);
+        key = sheet.crop(WIDTH * 5, 0, WIDTH, HEIGHT);
+       
+        tree = sheet.crop(0, HEIGHT, WIDTH, HEIGHT);
+        cube = sheet.crop(WIDTH * 4, 0, WIDTH, HEIGHT);
 
     }
 }

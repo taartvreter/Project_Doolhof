@@ -94,16 +94,11 @@ public class Game extends JPanel implements Runnable {
         }
 
         Tile[] levelMap = new LevelGetter().loadMapToArray();
-        for (Tile d : levelMap) {
-            g.drawImage(d.getStandingObject().getImage(), TILEDRAWINGWIDTH * d.getLocationX(), TILEDRAWINGHEIGHT * d.getLocationY(), this);
+        
+        for (Tile tileOnMap : levelMap) {
+            int ka = (tileOnMap.getLocationY()-1);
+            g.drawImage(tileOnMap.getImage(), TILEDRAWINGWIDTH * (tileOnMap.getLocationX()-1), TILEDRAWINGHEIGHT * (tileOnMap.getLocationY()-1), this);
         }
-        /*
-        g.drawImage(Assets.player, 0, 0, this);
-        g.drawImage(Assets.endTile, TILEDRAWINGWIDTH * 9, hoogte * 9, this);
-        g.drawImage(Assets.wall, TILEDRAWINGWIDTH * 7, hoogte * 7, this);
-        g.drawImage(Assets.barricade, TILEDRAWINGWIDTH * 4, hoogte * 8, this);
-         */
-        //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();
         g.dispose();
@@ -113,7 +108,6 @@ public class Game extends JPanel implements Runnable {
     public void run() {
 
         init();
-
         int fps = 60;
         double timePerTick = 1000000000 / fps;
         double delta = 0;
@@ -148,7 +142,6 @@ public class Game extends JPanel implements Runnable {
         if (isRunning) {
             return;
         }
-
         isRunning = true;
         thread = new Thread(this);
         thread.start();

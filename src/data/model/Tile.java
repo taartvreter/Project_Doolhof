@@ -5,11 +5,15 @@
  */
 package data.model;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author hwpva
  */
 public class Tile {
+
+    private Player character;
 
     private GameElement standingObject;
 
@@ -36,5 +40,16 @@ public class Tile {
 
     public GameElement getStandingObject() {
         return this.standingObject;
+    }
+
+    public BufferedImage getImage() {
+        if (this.standingObject != null) {
+            return this.standingObject.getImage();
+        } else if (character != null) {
+            return this.character.getImage();
+        } else if (this instanceof EndTile) {
+            return this.getImage();
+        }
+        return null;
     }
 }

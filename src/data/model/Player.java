@@ -5,6 +5,9 @@
  */
 package data.model;
 
+import gfx.Assets;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author hwpva
@@ -14,6 +17,10 @@ public class Player {
     private Key keyPocket;
 
     public Player() {
+    }
+
+    public BufferedImage getImage() {
+        return Assets.player;
     }
 
     public void move() {

@@ -5,14 +5,28 @@
  */
 package data.model;
 
+import gfx.Assets;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author hwpva
  */
 public class Wall extends GameElement {
-    
+
+    private final BufferedImage image;
+
+    public Wall() {
+        this.image = Assets.wall;
+    }
+
     @Override
     public boolean canWalkThrough() {
         return false;
+    }
+
+    @Override
+    public BufferedImage getImage() {
+        return this.image;
     }
 }

@@ -34,7 +34,7 @@ public class Game extends JPanel implements Runnable {
     public int width, height;
     public String title;
 
-    private int breedte = 70, hoogte = 70;
+    private static final int TILEDRAWINGWIDTH = 70, TILEDRAWINGHEIGHT = 70;
 
     private Thread thread;
     private boolean isRunning = false;
@@ -93,11 +93,16 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i * 70), 700, (i * 70));
         }
 
+        Tile[] levelMap = new LevelGetter().loadMapToArray();
+        for (Tile d : levelMap) {
+            g.drawImage(d.getStandingObject().getImage(), TILEDRAWINGWIDTH * d.getLocationX(), TILEDRAWINGHEIGHT * d.getLocationY(), this);
+        }
+        /*
         g.drawImage(Assets.player, 0, 0, this);
-        g.drawImage(Assets.endTile, breedte * 9, hoogte * 9, this);
-        g.drawImage(Assets.wall, breedte * 7, hoogte * 7, this);
-        g.drawImage(Assets.barricade, breedte * 4, hoogte * 8, this);
-
+        g.drawImage(Assets.endTile, TILEDRAWINGWIDTH * 9, hoogte * 9, this);
+        g.drawImage(Assets.wall, TILEDRAWINGWIDTH * 7, hoogte * 7, this);
+        g.drawImage(Assets.barricade, TILEDRAWINGWIDTH * 4, hoogte * 8, this);
+         */
         //g.drawImage(, WIDTH, WIDTH, this);
         //End Drawing
         bs.show();
@@ -108,8 +113,6 @@ public class Game extends JPanel implements Runnable {
     public void run() {
 
         init();
-
-        Tile[][] levelMap = new LevelGetter().loadMapToArray();  //het laden van een level in een array. Dit staat hier tijdelijk.
 
         int fps = 60;
         double timePerTick = 1000000000 / fps;

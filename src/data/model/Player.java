@@ -11,7 +11,6 @@ package data.model;
  */
 public class Player {
 
-    private String name = "Hope Solo";
     private Key keyPocket;
 
     public Player() {
@@ -31,9 +30,5 @@ public class Player {
 
     public int getKeyPinCode() {
         return this.keyPocket.getKeyPinCode();
-    }
-
-    public String getName() {
-        return this.getName();
     }
 }

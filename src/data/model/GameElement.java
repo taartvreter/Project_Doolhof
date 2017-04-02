@@ -12,8 +12,7 @@ import java.awt.image.BufferedImage;
  * @author hwpva
  */
 public abstract class GameElement {
-    private BufferedImage image;
-    public void setImage(){}
+    abstract public BufferedImage getImage();
     abstract public boolean canWalkThrough();
     //abstract public void draw();
 }

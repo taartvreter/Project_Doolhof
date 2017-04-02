@@ -19,8 +19,8 @@ public class Tile {
     public Tile(int positionX, int positionY) {
         this.locationX = positionX;
         this.locationY = positionY;
+        this.standingObject = null;
     }
-
 
     public int getLocationX() {
         return this.locationX;

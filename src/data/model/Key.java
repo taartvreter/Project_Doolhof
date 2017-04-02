@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data.model;
 
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -17,12 +17,19 @@ public class Key extends GameElement {
 
     public Key() {
         java.util.Random rand = new java.util.Random(100);
+
+    }
+
+    @Override
+    public BufferedImage getImage() {
+        return null;
     }
 
     public int getKeyPinCode() {
         return this.pinCode;
     }
 
+    @Override
     public boolean canWalkThrough() {
         return true;
     }

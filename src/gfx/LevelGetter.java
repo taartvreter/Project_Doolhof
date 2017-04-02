@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LevelGetter {
@@ -12,9 +13,9 @@ public class LevelGetter {
     private int cols = 5;
     private int rows = 5;
 
-    private Tile[][] mazeTiles = new Tile[cols][rows];
+    private final ArrayList<Tile> mazeTiles = new ArrayList<>();
 
-    public Tile[][] loadMapToArray() {
+    public Tile[] loadMapToArray() {
         this.resetAllTiles();
         //Source: https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
         String fileLocation = "./res/textures/maze1.csv";
@@ -23,39 +24,40 @@ public class LevelGetter {
         try (BufferedReader br = new BufferedReader(new FileReader(fileLocation))) {
             boolean hasEndTile = false;
             while ((line = br.readLine()) != null) {
+
                 String[] mazeObject = line.split(csvSplitBy);
                 String gameObjectName = mazeObject[0];
                 int gameObjectLocationX = Integer.parseInt(mazeObject[1]);
                 int gameObjectLocationY = Integer.parseInt(mazeObject[2]);
+                Tile tileWithObject = new Tile(gameObjectLocationY, gameObjectLocationY);
                 switch (gameObjectName) {
                     case "barricade":
-                        this.mazeTiles[gameObjectLocationX - 1][gameObjectLocationY - 1].setStandingObject(new Barricade());
+                        tileWithObject.setStandingObject(new Barricade(1));
+                        this.mazeTiles.add(tileWithObject);
                         break;
                     case "wall":
-                        this.mazeTiles[gameObjectLocationX - 1][gameObjectLocationY - 1].setStandingObject(new Wall());
+                        tileWithObject.setStandingObject(new Wall());
+                        this.mazeTiles.add(tileWithObject);
                         break;
                     case "key":
-                        this.mazeTiles[gameObjectLocationX - 1][gameObjectLocationY - 1].setStandingObject(new Key());
+                        tileWithObject.setStandingObject(new Key());
                         break;
                     case "endTile":
                         if (!hasEndTile) {
-                            this.mazeTiles[gameObjectLocationX - 1][gameObjectLocationY - 1] = new EndTile(gameObjectLocationX, gameObjectLocationY);
+                            tileWithObject = new EndTile(gameObjectLocationX, gameObjectLocationY);
                         }
                         break;
                 }
-                System.out.println(mazeObject[0]);
+                System.out.println("name object:" + mazeObject[0] + " postitionX:" + mazeObject[1] + " postitionY:" + mazeObject[2]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return mazeTiles;
+        return this.mazeTiles.toArray(new Tile[0]);
     }
 
     private void resetAllTiles() {
-        for (int colom = 0; colom < this.cols; colom++) {
-            for (int row = 0; row < this.rows; row++) {
-                this.mazeTiles[colom][row] = new Tile(row + 1, colom + 1);
-            }
-        }
+        this.mazeTiles.clear();
+
     }
 }

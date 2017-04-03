@@ -6,15 +6,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LevelGetter {
 
-    private int cols = 5;
-    private int rows = 5;
+    private int cols = 10;
+    private int rows = 10;
 
     private final ArrayList<Tile> mazeTiles = new ArrayList<>();
 
-    public Tile[] loadMapToArray() {
+    public Tile[][] loadMapToArray() {
         this.resetAllTiles();
         //Source: https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
         String fileLocation = "./res/gameData/maps/easy/maze1.csv";
@@ -58,7 +59,23 @@ public class LevelGetter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return this.mazeTiles.toArray(new Tile[0]);
+
+        Tile[][] newMazeMap = new Tile[cols][rows];
+        for (int i = 0; i < this.cols; i++) {
+            for (int j = 0; j < 10; j++) {
+                newMazeMap[j][i] = new Tile(j, i);
+            }
+        }
+
+        for (Tile GameElementTile : this.mazeTiles) {
+            newMazeMap[GameElementTile.getLocationY()-1][GameElementTile.getLocationX()-1] = GameElementTile;
+        }
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Arrays.toString(newMazeMap[i]));
+        }
+
+        return newMazeMap;
     }
 
     private void filterNonUsableGameElements() {
@@ -67,6 +84,5 @@ public class LevelGetter {
 
     private void resetAllTiles() {
         this.mazeTiles.clear();
-
     }
 }

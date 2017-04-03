@@ -36,7 +36,7 @@ public class Game extends JPanel implements Runnable {
 
     //Game Models
     private Player player1;
-    private Tile[] filledLevelTiles;
+    private Tile[][] mazeMap;
 
     //Display Variables
     private Display display;
@@ -132,8 +132,11 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i * 70), 700, (i * 70));
         }
 
-        for (Tile tileOnMap : this.filledLevelTiles) {
-            g.drawImage(tileOnMap.getImage(), TILEDRAWINGWIDTH * (tileOnMap.getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap.getLocationY() - 1), this);
+        for (Tile[] tileOnMap : this.mazeMap) {
+            for (int i = 0; i < tileOnMap.length; i++) {
+                 g.drawImage(tileOnMap[i].getImage(), TILEDRAWINGWIDTH * (tileOnMap[i].getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap[i].getLocationY() - 1), this);
+            }
+           
         }
         //End Drawing
         bs.show();
@@ -198,6 +201,6 @@ public class Game extends JPanel implements Runnable {
 
     private void loadLevel() {
         //load level items
-        this.filledLevelTiles = new LevelGetter().loadMapToArray();
+        this.mazeMap = new LevelGetter().loadMapToArray();
     }
 }

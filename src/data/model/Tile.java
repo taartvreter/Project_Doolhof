@@ -14,7 +14,6 @@ import java.awt.image.BufferedImage;
 public class Tile {
 
     private Player character;
-
     private GameElement standingObject;
 
     private final int locationX;

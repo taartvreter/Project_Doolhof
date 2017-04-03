@@ -7,6 +7,9 @@ package display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,11 +26,13 @@ public class Display {
     private String title;
     private int width, height;
 
-    public Display(String title, int width, int height) {
+    private final KeyAdapter keyAdapter;
+
+    public Display(String title, int width, int height, KeyAdapter kAdapter) {
         this.title = title;
         this.width = width;
         this.height = height;
-
+        this.keyAdapter = kAdapter;
         createDisplay();
     }
 
@@ -41,19 +46,20 @@ public class Display {
         frame.setVisible(true);
 
         canvas = new Canvas();
+        canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
 //        jpanel = new JPanel();
 //        jpanel.setPreferredSize(new Dimension(width, height));
-            
+
         frame.add(canvas);
 //        frame.add(jpanel);
         frame.pack();
     }
-    
-    public Canvas getCanvas(){
+
+    public Canvas getCanvas() {
         return canvas;
     }
-    
+
 //        public JPanel getJPanel(){
 //            return jpanel;
 //        }

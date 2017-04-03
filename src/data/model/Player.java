@@ -17,13 +17,18 @@ public class Player {
     private Key keyPocket;
 
     public Player() {
+        this.keyPocket = null;
+    }
+
+    public Player(Key firstKey) {
+        this.keyPocket = firstKey;
     }
 
     public BufferedImage getImage() {
         return Assets.player;
     }
 
-    public void movefRight() {
+    public void move() {
     }
 
     /**

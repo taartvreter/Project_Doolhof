@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeListener;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
@@ -61,45 +62,23 @@ public class Game extends JPanel implements Runnable {
     }
 
     private void init() {
-        display = new Display(title, width, height);
+        //Add the keyboard listener
+        KeyAdapter keyWhisperer = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                doPlayerMove(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                doPlayerMove(e);
+            }
+        };
+
+        display = new Display(title, width, height, keyWhisperer);
         Assets.init();
 //soutce key bindings java swing: http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
         //keyListener 
-        Action sd = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("test");
-            }
-        };
-        System.out.println(isFocusable());
-        this.requestFocusInWindow();
-        System.out.println(this.isFocusOwner());
-        this.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), "doSomething");
-        this.getActionMap().put("doSomething", sd);
-
-        /*
-        Action GamePanelAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("f2 is pressed");
-            }
-        };
-
-        this.getInputMap().put(KeyStroke.getKeyStroke("F2"),"pressed");
-
-        this.getActionMap().put("GamePanelAction", GamePanelAction);
-         */
- /*
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                System.out.println(e.getKeyChar());
-            }
-        });
-         
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-         */
         gameState = new GameState();
         State.setState(gameState);
 
@@ -134,9 +113,9 @@ public class Game extends JPanel implements Runnable {
 
         for (Tile[] tileOnMap : this.mazeMap) {
             for (int i = 0; i < tileOnMap.length; i++) {
-                 g.drawImage(tileOnMap[i].getImage(), TILEDRAWINGWIDTH * (tileOnMap[i].getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap[i].getLocationY() - 1), this);
+                g.drawImage(tileOnMap[i].getImage(), TILEDRAWINGWIDTH * (tileOnMap[i].getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap[i].getLocationY() - 1), this);
             }
-           
+
         }
         //End Drawing
         bs.show();
@@ -200,7 +179,9 @@ public class Game extends JPanel implements Runnable {
     }
 
     private void loadLevel() {
-        //load level items
         this.mazeMap = new LevelGetter().loadMapToArray();
+    }
+    
+    public void doPlayerMove(KeyEvent e){
     }
 }

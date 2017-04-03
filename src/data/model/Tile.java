@@ -27,7 +27,8 @@ public class Tile {
     }
 
     /**
-     * @return the image of the player or gameElement that is standing on the tile.
+     * @return the image of the player or gameElement that is standing on the
+     * tile.
      */
     public BufferedImage getImage() {
         if (this.standingObject != null) {

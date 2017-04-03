@@ -16,23 +16,28 @@ import gfx.LevelGetter;
 import gfx.SpriteSheet;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.Action;
+import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 
 /**
  *
  * @author Frenky
  */
 public class Game extends JPanel implements Runnable {
-    
+
     //Game Models
     private Player player1;
     private Tile[] filledLevelTiles;
-    
+
     //Display Variables
     private Display display;
     public int width, height;
@@ -58,19 +63,47 @@ public class Game extends JPanel implements Runnable {
     private void init() {
         display = new Display(title, width, height);
         Assets.init();
-/*
+//soutce key bindings java swing: http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
+        //keyListener 
+        Action sd = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("test");
+            }
+        };
+        System.out.println(isFocusable());
+        this.requestFocusInWindow();
+        System.out.println(this.isFocusOwner());
+        this.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), "doSomething");
+        this.getActionMap().put("doSomething", sd);
+
+        /*
+        Action GamePanelAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("f2 is pressed");
+            }
+        };
+
+        this.getInputMap().put(KeyStroke.getKeyStroke("F2"),"pressed");
+
+        this.getActionMap().put("GamePanelAction", GamePanelAction);
+         */
+ /*
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("d");
+                System.out.println(e.getKeyChar());
             }
         });
-
+         
         this.setFocusable(true);
-*/
+        this.requestFocusInWindow();
+         */
         gameState = new GameState();
         State.setState(gameState);
 
+        this.loadLevel();
     }
 
     private void tick() {
@@ -99,10 +132,8 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i * 70), 700, (i * 70));
         }
 
-        this.filledLevelTiles = new LevelGetter().loadMapToArray();
-        
-        for (Tile tileOnMap : this.filledLevelTiles ) {
-            g.drawImage(tileOnMap.getImage(), TILEDRAWINGWIDTH * (tileOnMap.getLocationX()-1), TILEDRAWINGHEIGHT * (tileOnMap.getLocationY()-1), this);
+        for (Tile tileOnMap : this.filledLevelTiles) {
+            g.drawImage(tileOnMap.getImage(), TILEDRAWINGWIDTH * (tileOnMap.getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap.getLocationY() - 1), this);
         }
         //End Drawing
         bs.show();
@@ -122,6 +153,7 @@ public class Game extends JPanel implements Runnable {
         int ticks = 0;
 
         while (isRunning) {
+
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
@@ -162,5 +194,10 @@ public class Game extends JPanel implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadLevel() {
+        //load level items
+        this.filledLevelTiles = new LevelGetter().loadMapToArray();
     }
 }

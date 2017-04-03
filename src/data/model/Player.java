@@ -23,7 +23,7 @@ public class Player {
         return Assets.player;
     }
 
-    public void move() {
+    public void movefRight() {
     }
 
     /**

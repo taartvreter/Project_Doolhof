@@ -25,8 +25,11 @@ public class Wall extends GameElement {
         return false;
     }
 
+    /**
+     * @return the image
+     */
     @Override
-    public  BufferedImage getImage() {
-        return this.image;
+    public BufferedImage getImage() {
+        return image;
     }
 }

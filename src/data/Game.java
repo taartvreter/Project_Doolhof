@@ -7,6 +7,7 @@ package data;
 
 import State.GameState;
 import State.State;
+import data.model.Player;
 import data.model.Tile;
 import display.Display;
 import gfx.Assets;
@@ -27,9 +28,12 @@ import java.awt.event.KeyEvent;
  * @author Frenky
  */
 public class Game extends JPanel implements Runnable {
-
-    private Tile[][] maze;
-
+    
+    //Game Models
+    private Player player1;
+    private Tile[] filledLevelTiles;
+    
+    //Display Variables
     private Display display;
     public int width, height;
     public String title;
@@ -54,14 +58,16 @@ public class Game extends JPanel implements Runnable {
     private void init() {
         display = new Display(title, width, height);
         Assets.init();
-
+/*
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 System.out.println("d");
             }
         });
+
         this.setFocusable(true);
+*/
         gameState = new GameState();
         State.setState(gameState);
 
@@ -93,10 +99,9 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i * 70), 700, (i * 70));
         }
 
-        Tile[] levelMap = new LevelGetter().loadMapToArray();
+        this.filledLevelTiles = new LevelGetter().loadMapToArray();
         
-        for (Tile tileOnMap : levelMap) {
-            int ka = (tileOnMap.getLocationY()-1);
+        for (Tile tileOnMap : this.filledLevelTiles ) {
             g.drawImage(tileOnMap.getImage(), TILEDRAWINGWIDTH * (tileOnMap.getLocationX()-1), TILEDRAWINGHEIGHT * (tileOnMap.getLocationY()-1), this);
         }
         //End Drawing

@@ -32,7 +32,7 @@ public class LevelGetter {
                 switch (gameObjectName) {
                     case "player":
                         if (!hasPlayer) {
-
+                            tileWithObject.setCharacter(new Player());
                             hasPlayer = true;
                         }
                         break;

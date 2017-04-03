@@ -26,7 +26,11 @@ public class Player {
     public void move() {
     }
 
-    public void openBarricade() {
+    /**
+     * Puts the current key of the player into the barricade and turns te key to
+     * see if the barricade opens.
+     */
+    public void putKeyInBarricade() {
     }
 
     public void checkKeyPocket() {

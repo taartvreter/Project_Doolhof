@@ -26,30 +26,59 @@ public class Tile {
         this.standingObject = null;
     }
 
-    public int getLocationX() {
-        return this.locationX;
-    }
-
-    public int getLocationY() {
-        return this.locationY;
-    }
-
-    public void setStandingObject(GameElement newStandingObject) {
-        this.standingObject = newStandingObject;
-    }
-
-    public GameElement getStandingObject() {
-        return this.standingObject;
-    }
-
+    /**
+     * @return the image of the player or gameElement that is standing on the tile.
+     */
     public BufferedImage getImage() {
         if (this.standingObject != null) {
             return this.standingObject.getImage();
-        } else if (character != null) {
-            return this.character.getImage();
+        } else if (getCharacter() != null) {
+            return this.getCharacter().getImage();
         } else if (this instanceof EndTile) {
             return this.getImage();
         }
         return null;
+    }
+
+    /**
+     * @return the character
+     */
+    public Player getCharacter() {
+        return character;
+    }
+
+    /**
+     * @param character the character to set
+     */
+    public void setCharacter(Player character) {
+        this.character = character;
+    }
+
+    /**
+     * @return the locationX
+     */
+    public int getLocationX() {
+        return locationX;
+    }
+
+    /**
+     * @return the locationY
+     */
+    public int getLocationY() {
+        return locationY;
+    }
+
+    /**
+     * @return the standingObject
+     */
+    public GameElement getStandingObject() {
+        return standingObject;
+    }
+
+    /**
+     * @param standingObject the standingObject to set
+     */
+    public void setStandingObject(GameElement standingObject) {
+        this.standingObject = standingObject;
     }
 }

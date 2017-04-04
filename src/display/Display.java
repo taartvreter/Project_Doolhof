@@ -8,11 +8,8 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -51,7 +48,7 @@ public class Display {
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-
+        frame.setJMenuBar(this.createMenubar());
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
 
@@ -60,9 +57,33 @@ public class Display {
         //        jpanel.setPreferredSize(new Dimension(width, height));
 
         frame.add(canvas);
+
         canvas.requestFocusInWindow();
 //        frame.add(jpanel);
         frame.pack();
+    }
+
+    private JMenuBar createMenubar() {
+        //source: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
+        JMenuBar menuB = new JMenuBar();
+
+        //FirstMenu
+        JMenu gameMenu = new JMenu("Game");
+        gameMenu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+
+        //startbutton
+        JMenuItem menuItem = new JMenuItem("Start", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, true));
+        gameMenu.add(menuItem);
+        //reset button
+        menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK, true));
+        gameMenu.add(menuItem);
+
+        menuB.add(gameMenu);
+
+        return menuB;
     }
 
     public Canvas getCanvas() {

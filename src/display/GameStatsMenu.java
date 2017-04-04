@@ -16,18 +16,21 @@ import javax.swing.*;
 public class GameStatsMenu extends JPanel {
 
     private final JLabel keyPinCodeLabel;
+    private final JLabel numberBarricadesOpend;
 
     public GameStatsMenu() {
-        this.keyPinCodeLabel = new JLabel("KeyCode");
+        this.keyPinCodeLabel = new JLabel("KeyCode:");
+        this.numberBarricadesOpend = new JLabel("Number of barricades opened:");
         this.initComponents();
     }
 
     private void initComponents() {
         this.setLayout(new FlowLayout());
         this.add(keyPinCodeLabel);
+        this.add(numberBarricadesOpend);
     }
-    
-    public void changeKeyPinCode(int keyPinCode){
-         this.keyPinCodeLabel.setText(keyPinCode + "");
+
+    public void changeKeyPinCode(int keyPinCode) {
+        this.keyPinCodeLabel.setText("KeyCode:" + keyPinCode);
     }
 }

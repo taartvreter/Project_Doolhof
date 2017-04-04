@@ -68,8 +68,8 @@ public class Display {
         return canvas;
     }
 
-    public void setCurrentKeyCode() {
-        
+    public void setCurrentKeyCode(int pinCode) {
+        statsMenu.changeKeyPinCode(pinCode);
     }
 
 //        public JPanel getJPanel(){

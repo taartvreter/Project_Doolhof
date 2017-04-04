@@ -5,8 +5,9 @@
  */
 package display;
 
+import data.model.Key;
+import java.awt.FlowLayout;
 import javax.swing.*;
-import javax.swing.JPanel;
 
 /**
  *
@@ -14,14 +15,19 @@ import javax.swing.JPanel;
  */
 public class GameStatsMenu extends JPanel {
 
-    private final JLabel ddsf = new JLabel("asd");
-
-    //Variables
-    private final int keyCode = 0;
+    private final JLabel keyPinCodeLabel;
 
     public GameStatsMenu() {
-        
+        this.keyPinCodeLabel = new JLabel("KeyCode");
+        this.initComponents();
     }
-    public void setKeyCode(){
+
+    private void initComponents() {
+        this.setLayout(new FlowLayout());
+        this.add(keyPinCodeLabel);
+    }
+    
+    public void changeKeyPinCode(int keyPinCode){
+         this.keyPinCodeLabel.setText(keyPinCode + "");
     }
 }

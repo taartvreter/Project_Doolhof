@@ -5,15 +5,13 @@
  */
 package display;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import javax.swing.*;
 
 /**
  *
  * @author hwpva
  */
-public class Menu extends JPanel{
-    public Menu(){
-        setLayout(new BorderLayout());
-    }
+public class Menu extends JPanel {
+
 }

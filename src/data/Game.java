@@ -187,6 +187,7 @@ public class Game extends JPanel implements Runnable {
                             this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstBarricade);
                         }
                     } else if (standingObject instanceof Key) {
+                        this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
                         Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
                         this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstKey);
                     }

@@ -181,7 +181,8 @@ public class Game extends JPanel implements Runnable {
     private void loadLevel() {
         this.mazeMap = new LevelGetter().loadMapToArray();
     }
-    
-    public void doPlayerMove(KeyEvent e){
+
+    public void doPlayerMove(KeyEvent e) {
+        System.out.println(e.getKeyCode());
     }
 }

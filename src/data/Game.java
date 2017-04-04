@@ -66,12 +66,11 @@ public class Game extends JPanel implements Runnable {
         KeyAdapter keyWhisperer = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                doPlayerMove(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                doPlayerMove(e);
+                tryPlayerMove(e);
             }
         };
 
@@ -187,12 +186,37 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
-    public void checkTile(){
-        
-    }
-    
-    public void doPlayerMove(KeyEvent e) {
+    public void tryPlayerMove(KeyEvent e) {
         player1.move();
-        System.out.println(e.getKeyCode());
+        int locationX;
+        int locationY;
+        int keyPressed = e.getKeyCode();
+        locationX = this.player1.getLocationX();
+        locationY = this.player1.getLocationY();
+
+        if (keyPressed == 38) { //up
+            if (locationY > 1) {
+                this.player1.setLocationY(locationY - 1);
+            }
+        } else if (keyPressed == 40) { //down
+            if (locationY < 10) {
+                this.player1.setLocationY(locationY + 1);
+            }
+        } else if (keyPressed == 37) {  //left
+            if (locationX > 1) {
+                this.player1.setLocationX(locationX - 1);
+            }
+        } else if (keyPressed == 39) {  //right
+            if (locationX < 10) {
+                this.player1.setLocationX(locationX + 1);
+                
+                System.out.println(this.mazeMap[1][0].getStandingObject());
+                
+//                for (Tile[] tileOnMap : this.mazeMap) {
+//                    System.out.println(tileOnMap[1].getLocationX());
+//                    System.out.println(tileOnMap[1].getLocationY());
+//                }
+            }
+        }
     }
 }

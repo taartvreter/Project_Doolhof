@@ -73,7 +73,7 @@ public class Player {
     }
 
     public int getKeyPinCode() {
-        return this.keyPocket.getKeyPinCode();
+        return this.getKeyPocket().getKeyPinCode();
     }
 
     /**
@@ -102,6 +102,13 @@ public class Player {
      */
     public void setLocationY(int locationY) {
         this.locationY = locationY;
+    }
+
+    /**
+     * @return the keyPocket
+     */
+    public Key getKeyPocket() {
+        return keyPocket;
     }
 
 }

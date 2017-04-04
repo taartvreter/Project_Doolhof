@@ -7,8 +7,7 @@ package data;
 
 import State.GameState;
 import State.State;
-import data.model.Player;
-import data.model.Tile;
+import data.model.*;
 import display.Display;
 import gfx.Assets;
 import gfx.ImageLoader;
@@ -186,29 +185,33 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
-    
-   
-    
     public void tryPlayerMove(KeyEvent e) {
-
-        int locationX;
-        int locationY;
         int keyPressed = e.getKeyCode();
-        locationX = this.player1.getLocationX();
-        locationY = this.player1.getLocationY();
-        
+        int locationX = this.player1.getLocationX();
+        int locationY = this.player1.getLocationY();
+
+        String moveType = "";
         switch (keyPressed) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
                 //up
                 if (locationY > 1) {
-                    this.player1.move("up");
+                    moveType = "up";
                 }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 //down
                 if (locationY < 10) {
+                    GameElement standingObject = this.mazeMap[locationY][locationX - 1].getStandingObject();
+                    //System.out.println(standingObject);
+                    if (standingObject instanceof Barricade) {
+                        Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                        this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstBarricade);
+                    } else if (standingObject instanceof Key) {
+                        Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                        this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstKey);
+                    }
                     this.player1.move("down");
                 }
                 break;
@@ -226,8 +229,12 @@ public class Game extends JPanel implements Runnable {
                     this.player1.move("right");
                 }
                 break;
+            default:
+                moveType = "";
+                break;
         }
-       
+
+        this.player1.move(moveType);
     }
 
     public boolean[][] getSurroundingPlayerTile() {

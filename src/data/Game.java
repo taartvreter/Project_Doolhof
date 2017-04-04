@@ -5,28 +5,18 @@
  */
 package data;
 
-import State.GameState;
-import State.State;
+
 import data.model.*;
 import display.Display;
 import gfx.Assets;
-import gfx.ImageLoader;
 import gfx.LevelGetter;
-import gfx.SpriteSheet;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.beans.PropertyChangeListener;
-import javax.swing.Action;
-import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
+
 
 /**
  *
@@ -51,8 +41,7 @@ public class Game extends JPanel implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    //State
-    private State gameState;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -77,16 +66,8 @@ public class Game extends JPanel implements Runnable {
         Assets.init();
 //soutce key bindings java swing: http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
         //keyListener 
-        gameState = new GameState();
-        State.setState(gameState);
 
         this.loadLevel();
-    }
-
-    private void tick() {
-        if (State.getState() != null) {
-            State.getState().tick();
-        }
     }
 
     private void render() {
@@ -143,7 +124,6 @@ public class Game extends JPanel implements Runnable {
             lastTime = now;
 
             if (delta >= 1) {
-                tick();
                 render();
                 ticks++;
                 delta--;

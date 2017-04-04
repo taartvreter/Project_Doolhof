@@ -43,6 +43,7 @@ public class Game extends JPanel implements Runnable {
         this.width = width;
         this.height = height;
         this.title = title;
+        init();
     }
 
     private void init() {
@@ -102,8 +103,6 @@ public class Game extends JPanel implements Runnable {
 
     @Override
     public void run() {
-
-        init();
         int fps = 60;
         double timePerTick = 1000000000 / fps;
         double delta = 0;

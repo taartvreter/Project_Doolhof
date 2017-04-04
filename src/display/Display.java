@@ -60,6 +60,7 @@ public class Display {
         //        jpanel.setPreferredSize(new Dimension(width, height));
 
         frame.add(canvas);
+        canvas.requestFocusInWindow();
 //        frame.add(jpanel);
         frame.pack();
     }

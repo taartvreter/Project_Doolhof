@@ -5,6 +5,7 @@
  */
 package display;
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
  */
 public class Display {
 
+    private GameStatsMenu statsMenu;
     private JFrame frame;
     private Canvas canvas;
 //    private JPanel jpanel;
@@ -44,13 +46,18 @@ public class Display {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-       
+        frame.setLayout(new BorderLayout());
+
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
 
+        this.statsMenu = new GameStatsMenu();
+        frame.add(this.statsMenu, BorderLayout.NORTH);
+
+        frame.add(canvas, BorderLayout.CENTER);
 //        jpanel = new JPanel();
-//        jpanel.setPreferredSize(new Dimension(width, height));
+        //        jpanel.setPreferredSize(new Dimension(width, height));
 
         frame.add(canvas);
 //        frame.add(jpanel);
@@ -61,7 +68,11 @@ public class Display {
         return canvas;
     }
 
+    public void setCurrentKeyCode() {
+        
+    }
+
 //        public JPanel getJPanel(){
-//            return jpanel;
-//        }
+    //            return jpanel;
+    //        }
 }

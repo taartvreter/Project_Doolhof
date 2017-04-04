@@ -5,7 +5,6 @@
  */
 package data;
 
-
 import data.model.*;
 import display.Display;
 import gfx.Assets;
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 
 /**
  *
@@ -40,8 +38,6 @@ public class Game extends JPanel implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
-
-
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -187,12 +183,22 @@ public class Game extends JPanel implements Runnable {
                     //System.out.println(standingObject);
                     if (standingObject instanceof Barricade) {
                         Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
-                        this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstBarricade);
+                        if (walkingAgainstBarricade == null) {
+                            this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstBarricade);
+                        }
                     } else if (standingObject instanceof Key) {
                         Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
                         this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstKey);
                     }
-                    this.player1.move("down");
+                    standingObject = this.mazeMap[locationY][locationX - 1].getStandingObject();
+                    if (standingObject != null) {
+                        if (standingObject.canWalkThrough()) {
+                            this.player1.move("down");
+                        }
+                    } else {
+                        this.player1.move("down");
+                    }
+
                 }
                 break;
             case KeyEvent.VK_LEFT:
@@ -215,18 +221,5 @@ public class Game extends JPanel implements Runnable {
         }
 
         this.player1.move(moveType);
-    }
-
-    public boolean[][] getSurroundingPlayerTile() {
-        boolean[][] surroundingWalkables = new boolean[3][3];
-        int playerLocationX = this.player1.getLocationX() - 1;
-        int playerLocationY = this.player1.getLocationY() - 1;
-        boolean isWalkableTile;
-        for (int i = 0; i < surroundingWalkables.length; i++) {
-            for (int j = 0; j < surroundingWalkables[i].length; j++) {
-
-            }
-        }
-        return surroundingWalkables;
     }
 }

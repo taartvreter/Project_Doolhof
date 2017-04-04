@@ -52,7 +52,6 @@ public class Tile {
 //    public void setCharacter(Player character) {
 //        this.character = character;
 //    }
-
     /**
      * @return the locationX
      */
@@ -80,4 +79,5 @@ public class Tile {
     public void setStandingObject(GameElement standingObject) {
         this.standingObject = standingObject;
     }
+
 }

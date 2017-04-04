@@ -52,19 +52,24 @@ public class Player {
     }
 
     /**
-     * Puts the current key of the player into the barricade and turns te key to
-     * see if the barricade opens.
+     * Puts the current key of the player into the barricade and turns the key
+     * to see if the barricade opens.
      *
      * @param openableBarricade
+     * @return returns if the barricade disappears, when the player put the key
+     * in the barricade.
      */
     public Barricade putKeyInBarricade(Barricade openableBarricade) {
-        if (!openableBarricade.checkKey(keyPocket)) {
-            System.out.println("The barricade stays closed...");
-            return openableBarricade;
-        }
-        System.out.println("The barricade magically opens!");
+        if (this.keyPocket != null) {
+            if (openableBarricade.checkKey(keyPocket)) {
+                System.out.println("The barricade magically opens!");
 
-        return null;
+                return null;
+            }
+        }
+        System.out.println("The barricade stays closed...");
+        return openableBarricade;
+
     }
 
     public Key pickUpKey(Key pickedUpKey) {

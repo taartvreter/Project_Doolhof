@@ -5,6 +5,7 @@
  */
 package display;
 
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -12,5 +13,7 @@ import javax.swing.JPanel;
  * @author hwpva
  */
 public class Menu extends JPanel{
-    
+    public Menu(){
+        setLayout(new BorderLayout());
+    }
 }

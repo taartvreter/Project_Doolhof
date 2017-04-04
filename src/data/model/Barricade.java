@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * @author hwpva
  */
-public class Barricade extends GameElement{
+public class Barricade extends GameElement {
 
     private final BufferedImage image;
 
@@ -20,12 +20,15 @@ public class Barricade extends GameElement{
 
     public Barricade(int pinCode) {
         this.pinCode = pinCode;
-          
         //init Image with keycode
         BufferedImage barricadeWithoutPinImg = Assets.barricade;
         barricadeWithoutPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
         this.image = barricadeWithoutPinImg;
 
+    }
+
+    public boolean checkKey(Key key) {
+        return (key.getKeyPinCode() == this.pinCode);
     }
 
     @Override

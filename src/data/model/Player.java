@@ -38,14 +38,31 @@ public class Player {
     /**
      * Puts the current key of the player into the barricade and turns te key to
      * see if the barricade opens.
+     *
+     * @param openableBarricade
      */
-    public void putKeyInBarricade() {
+    public Barricade putKeyInBarricade(Barricade openableBarricade) {
+        if (!openableBarricade.checkKey(keyPocket)) {
+            System.out.println("The barricade stays closed...");
+            return openableBarricade;
+        }
+        System.out.println("The barricade magically opens!");
+
+        return null;
+        /*
+        int keyPocketPinCode = this.keyPocket.getKeyPinCode();
+        
+        if (barricadePinode == keyPocketPinCode) {
+            System.out.println("The barricade magically dissapears!");
+            return null;
+        }
+        System.out.println("The barricade stays locked...");
+        return openableBarricade.c;*/
     }
 
-    public void checkKeyPocket() {
-    }
-
-    public void pickUpKey() {
+    public Key pickUpKey(Key pickedUpKey) {
+        this.keyPocket = pickedUpKey;
+        return null;
     }
 
     public int getKeyPinCode() {
@@ -79,5 +96,5 @@ public class Player {
     public void setLocationY(int locationY) {
         this.locationY = locationY;
     }
-    
+
 }

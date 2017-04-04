@@ -37,6 +37,7 @@ public class Key extends GameElement {
 
     public int getKeyPinCode() {
         return this.pinCode;
+        
     }
 
     @Override

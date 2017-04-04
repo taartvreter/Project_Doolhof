@@ -187,6 +187,10 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
+    public void checkTile(){
+        
+    }
+    
     public void doPlayerMove(KeyEvent e) {
         player1.move();
         System.out.println(e.getKeyCode());

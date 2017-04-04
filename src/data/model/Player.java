@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
  */
 public class Player {
 
+    private final Tile[][] surroundTiles = new Tile[3][3];
+
     private Key keyPocket;
     private int locationX;
     private int locationY;
@@ -32,7 +34,17 @@ public class Player {
         return Assets.player;
     }
 
-    public void move() {
+    public void move(String move) {
+        //this.surroundTiles
+        Tile nextTile;
+        if (move.equals("up")) {
+            
+        }
+
+    }
+
+    public void lookAround(Tile[][] surroundingTile) {
+
     }
 
     /**

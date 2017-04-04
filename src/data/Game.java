@@ -187,12 +187,17 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void tryPlayerMove(KeyEvent e) {
-        player1.move();
+
         int locationX;
         int locationY;
         int keyPressed = e.getKeyCode();
         locationX = this.player1.getLocationX();
         locationY = this.player1.getLocationY();
+
+        switch (keyPressed) {
+
+        }
+        player1.move(keyPressed);
 
         if (keyPressed == 38) { //up
             if (locationY > 1) {
@@ -209,14 +214,27 @@ public class Game extends JPanel implements Runnable {
         } else if (keyPressed == 39) {  //right
             if (locationX < 10) {
                 this.player1.setLocationX(locationX + 1);
-                
+
                 System.out.println(this.mazeMap[1][0].getStandingObject());
-                
+
 //                for (Tile[] tileOnMap : this.mazeMap) {
 //                    System.out.println(tileOnMap[1].getLocationX());
 //                    System.out.println(tileOnMap[1].getLocationY());
 //                }
             }
         }
+    }
+
+    public boolean[][] getSurroundingPlayerTile() {
+        boolean[][] surroundingWalkables = new boolean[3][3];
+        int playerLocationX = this.player1.getLocationX() - 1;
+        int playerLocationY = this.player1.getLocationY() - 1;
+        boolean isWalkableTile;
+        for (int i = 0; i < surroundingWalkables.length; i++) {
+            for (int j = 0; j < surroundingWalkables[i].length; j++) {
+                
+            }
+        }
+        return surroundingWalkables;
     }
 }

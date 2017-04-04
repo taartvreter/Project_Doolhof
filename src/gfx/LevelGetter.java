@@ -13,6 +13,8 @@ public class LevelGetter {
     private int cols = 10;
     private int rows = 10;
 
+    private Player newCharater = null;
+
     private final ArrayList<Tile> mazeTiles = new ArrayList<>();
 
     public Tile[][] loadMapToArray() {
@@ -22,7 +24,8 @@ public class LevelGetter {
         String line = "";
         String csvSplitBy = ";";
         try (BufferedReader br = new BufferedReader(new FileReader(fileLocation))) {
-            boolean hasEndTile = false, hasPlayer = false;
+            boolean hasEndTile = false;
+            newCharater = null;
             while ((line = br.readLine()) != null) {
 
                 String[] mazeObject = line.split(csvSplitBy);
@@ -32,9 +35,9 @@ public class LevelGetter {
                 Tile tileWithObject = new Tile(gameObjectLocationX, gameObjectLocationY);
                 switch (gameObjectName) {
                     case "player":
-                        if (!hasPlayer) {
-                            tileWithObject.setCharacter(new Player());
-                            hasPlayer = true;
+                        if (newCharater == null) {
+                            this.newCharater = new Player(gameObjectLocationX, gameObjectLocationY);
+                            //tileWithObject.setCharacter(new Player());
                         }
                         break;
                     case "barricade":
@@ -68,7 +71,7 @@ public class LevelGetter {
         }
 
         for (Tile GameElementTile : this.mazeTiles) {
-            newMazeMap[GameElementTile.getLocationY()-1][GameElementTile.getLocationX()-1] = GameElementTile;
+            newMazeMap[GameElementTile.getLocationY() - 1][GameElementTile.getLocationX() - 1] = GameElementTile;
         }
 
         for (int i = 0; i < 10; i++) {
@@ -84,5 +87,15 @@ public class LevelGetter {
 
     private void resetAllTiles() {
         this.mazeTiles.clear();
+    }
+
+    public Player loadPlayer() {
+        Player returningPlayer;
+        if (this.newCharater != null) {
+            returningPlayer = this.newCharater;
+        } else {
+            returningPlayer = new Player(1,1);
+        }
+        return returningPlayer;
     }
 }

@@ -117,6 +117,9 @@ public class Game extends JPanel implements Runnable {
             }
 
         }
+        //draw character
+        g.drawImage(player1.getImage(), TILEDRAWINGWIDTH * (player1.getLocationX() - 1), TILEDRAWINGHEIGHT * (player1.getLocationY() - 1), this);
+
         //End Drawing
         bs.show();
         g.dispose();
@@ -179,10 +182,13 @@ public class Game extends JPanel implements Runnable {
     }
 
     private void loadLevel() {
-        this.mazeMap = new LevelGetter().loadMapToArray();
+        LevelGetter levelLoader = new LevelGetter();
+        this.mazeMap = levelLoader.loadMapToArray();
+        this.player1 = levelLoader.loadPlayer();
     }
 
     public void doPlayerMove(KeyEvent e) {
+        player1.move();
         System.out.println(e.getKeyCode());
     }
 }

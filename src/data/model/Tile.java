@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
  */
 public class Tile {
 
-    private Player character;
     private GameElement standingObject;
 
     private final int locationX;
@@ -32,27 +31,27 @@ public class Tile {
     public BufferedImage getImage() {
         if (this.standingObject != null) {
             return this.standingObject.getImage();
-        } else if (getCharacter() != null) {
+        } /*else if (getCharacter() != null) {
             return this.getCharacter().getImage();
-        } else if (this instanceof EndTile) {
+        }*/ else if (this instanceof EndTile) {
             return this.getImage();
         }
         return null;
     }
 
-    /**
-     * @return the character
-     */
-    public Player getCharacter() {
-        return character;
-    }
-
-    /**
-     * @param character the character to set
-     */
-    public void setCharacter(Player character) {
-        this.character = character;
-    }
+//    /**
+//     * @return the character
+//     */
+//    public Player getCharacter() {
+//        return character;
+//    }
+//
+//    /**
+//     * @param character the character to set
+//     */
+//    public void setCharacter(Player character) {
+//        this.character = character;
+//    }
 
     /**
      * @return the locationX

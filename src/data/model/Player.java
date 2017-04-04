@@ -15,8 +15,12 @@ import java.awt.image.BufferedImage;
 public class Player {
 
     private Key keyPocket;
+    private int locationX;
+    private int locationY;
 
-    public Player() {
+    public Player(int locationX, int locationY) {
+        this.locationX = locationX;
+        this.locationY = locationY;
         this.keyPocket = null;
     }
 
@@ -47,4 +51,33 @@ public class Player {
     public int getKeyPinCode() {
         return this.keyPocket.getKeyPinCode();
     }
+
+    /**
+     * @return the locationX
+     */
+    public int getLocationX() {
+        return locationX;
+    }
+
+    /**
+     * @param locationX the locationX to set
+     */
+    public void setLocationX(int locationX) {
+        this.locationX = locationX;
+    }
+
+    /**
+     * @return the locationY
+     */
+    public int getLocationY() {
+        return locationY;
+    }
+
+    /**
+     * @param locationY the locationY to set
+     */
+    public void setLocationY(int locationY) {
+        this.locationY = locationY;
+    }
+    
 }

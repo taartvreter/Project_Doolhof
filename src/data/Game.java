@@ -186,6 +186,9 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
+    
+   
+    
     public void tryPlayerMove(KeyEvent e) {
 
         int locationX;
@@ -193,36 +196,38 @@ public class Game extends JPanel implements Runnable {
         int keyPressed = e.getKeyCode();
         locationX = this.player1.getLocationX();
         locationY = this.player1.getLocationY();
-
+        
         switch (keyPressed) {
-
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+                //up
+                if (locationY > 1) {
+                    this.player1.move("up");
+                }
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
+                //down
+                if (locationY < 10) {
+                    this.player1.move("down");
+                }
+                break;
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
+                //left
+                if (locationX > 1) {
+                    this.player1.move("left");
+                }
+                break;
+            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
+                //right
+                if (locationX < 10) {
+                    this.player1.move("right");
+                }
+                break;
         }
-        player1.move(keyPressed);
-
-        if (keyPressed == 38) { //up
-            if (locationY > 1) {
-                this.player1.setLocationY(locationY - 1);
-            }
-        } else if (keyPressed == 40) { //down
-            if (locationY < 10) {
-                this.player1.setLocationY(locationY + 1);
-            }
-        } else if (keyPressed == 37) {  //left
-            if (locationX > 1) {
-                this.player1.setLocationX(locationX - 1);
-            }
-        } else if (keyPressed == 39) {  //right
-            if (locationX < 10) {
-                this.player1.setLocationX(locationX + 1);
-
-                System.out.println(this.mazeMap[1][0].getStandingObject());
-
-//                for (Tile[] tileOnMap : this.mazeMap) {
-//                    System.out.println(tileOnMap[1].getLocationX());
-//                    System.out.println(tileOnMap[1].getLocationY());
-//                }
-            }
-        }
+       
     }
 
     public boolean[][] getSurroundingPlayerTile() {
@@ -232,7 +237,7 @@ public class Game extends JPanel implements Runnable {
         boolean isWalkableTile;
         for (int i = 0; i < surroundingWalkables.length; i++) {
             for (int j = 0; j < surroundingWalkables[i].length; j++) {
-                
+
             }
         }
         return surroundingWalkables;

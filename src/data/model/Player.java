@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class Player {
 
-    private final Tile[][] surroundTiles = new Tile[3][3];
+    private final boolean[][] surroundingWalkables = new boolean[3][3];
 
     private Key keyPocket;
     private int locationX;
@@ -35,16 +35,20 @@ public class Player {
     }
 
     public void move(String move) {
-        //this.surroundTiles
-        Tile nextTile;
-        if (move.equals("up")) {
-            
+        switch (move) {
+            case "up":
+                this.locationY -= 1;
+                break;
+            case "down":
+                this.locationY += 1;
+                break;
+            case "left":
+                this.locationX -= 1;
+                break;
+            case "right":
+                this.locationX += 1;
+                break;
         }
-
-    }
-
-    public void lookAround(Tile[][] surroundingTile) {
-
     }
 
     /**
@@ -61,15 +65,6 @@ public class Player {
         System.out.println("The barricade magically opens!");
 
         return null;
-        /*
-        int keyPocketPinCode = this.keyPocket.getKeyPinCode();
-        
-        if (barricadePinode == keyPocketPinCode) {
-            System.out.println("The barricade magically dissapears!");
-            return null;
-        }
-        System.out.println("The barricade stays locked...");
-        return openableBarricade.c;*/
     }
 
     public Key pickUpKey(Key pickedUpKey) {

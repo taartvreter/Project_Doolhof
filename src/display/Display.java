@@ -44,10 +44,11 @@ public class Display {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
+       
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
+
 //        jpanel = new JPanel();
 //        jpanel.setPreferredSize(new Dimension(width, height));
 

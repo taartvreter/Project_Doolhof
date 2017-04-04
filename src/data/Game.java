@@ -125,7 +125,7 @@ public class Game extends JPanel implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                System.out.println("Ticks and Frames: " + ticks);
+                //System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
             }
@@ -164,62 +164,103 @@ public class Game extends JPanel implements Runnable {
         int keyPressed = e.getKeyCode();
         int locationX = this.player1.getLocationX();
         int locationY = this.player1.getLocationY();
-
-        String moveType = "";
+        
         switch (keyPressed) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                //up
                 if (locationY > 1) {
-                    moveType = "up";
+                    GameElement standingObject = this.mazeMap[locationY - 2][locationX - 1].getStandingObject();
+
+                    if (standingObject instanceof Barricade) {
+                        Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                        if (walkingAgainstBarricade == null) {
+                            this.mazeMap[locationY - 2][locationX - 1].setStandingObject(walkingAgainstBarricade);
+                            this.player1.move("up");
+                        }
+                    } else if (standingObject instanceof Key) {
+                        this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
+                        Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                        this.mazeMap[locationY - 2][locationX - 1].setStandingObject(walkingAgainstKey);
+                        this.player1.move("up");
+                    } else if (standingObject instanceof Wall) {
+                        Wall.walkAgainstWall();
+                    } else {
+                        this.player1.move("up");
+                    }
                 }
                 break;
+
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                //down
                 if (locationY < 10) {
                     GameElement standingObject = this.mazeMap[locationY][locationX - 1].getStandingObject();
-                    //System.out.println(standingObject);
+
                     if (standingObject instanceof Barricade) {
                         Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
                         if (walkingAgainstBarricade == null) {
                             this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstBarricade);
+                            this.player1.move("down");
                         }
                     } else if (standingObject instanceof Key) {
                         this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
                         Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
                         this.mazeMap[locationY][locationX - 1].setStandingObject(walkingAgainstKey);
-                    }
-                    standingObject = this.mazeMap[locationY][locationX - 1].getStandingObject();
-                    if (standingObject != null) {
-                        if (standingObject.canWalkThrough()) {
-                            this.player1.move("down");
-                        }
+                        this.player1.move("down");
+                    } else if (standingObject instanceof Wall) {
+                        Wall.walkAgainstWall();
                     } else {
                         this.player1.move("down");
                     }
-
                 }
                 break;
+
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                //left
                 if (locationX > 1) {
-                    this.player1.move("left");
+                    GameElement standingObject = this.mazeMap[locationY - 1][locationX - 2].getStandingObject();
+
+                    if (standingObject instanceof Barricade) {
+                        Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                        if (walkingAgainstBarricade == null) {
+                            this.mazeMap[locationY - 1][locationX - 2].setStandingObject(walkingAgainstBarricade);
+                            this.player1.move("left");
+                        }
+                    } else if (standingObject instanceof Key) {
+                        this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
+                        Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                        this.mazeMap[locationY - 1][locationX - 2].setStandingObject(walkingAgainstKey);
+                        this.player1.move("left");
+                    } else if (standingObject instanceof Wall) {
+                        Wall.walkAgainstWall();
+                    } else {
+                        this.player1.move("left");
+                    }
                 }
                 break;
+
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                //right
                 if (locationX < 10) {
-                    this.player1.move("right");
+                    GameElement standingObject = this.mazeMap[locationY - 1][locationX].getStandingObject();
+
+                    if (standingObject instanceof Barricade) {
+                        Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                        if (walkingAgainstBarricade == null) {
+                            this.mazeMap[locationY - 1][locationX].setStandingObject(walkingAgainstBarricade);
+                            this.player1.move("right");
+                        }
+                    } else if (standingObject instanceof Key) {
+                        this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
+                        Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                        this.mazeMap[locationY - 1][locationX].setStandingObject(walkingAgainstKey);
+                        this.player1.move("right");
+                    } else if (standingObject instanceof Wall) {
+                        Wall.walkAgainstWall();
+                    } else {
+                        this.player1.move("right");
+                    }
                 }
                 break;
-            default:
-                moveType = "";
-                break;
         }
-
-        this.player1.move(moveType);
     }
 }

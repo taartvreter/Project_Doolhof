@@ -32,6 +32,7 @@ public class LevelGetter {
                 String gameObjectName = mazeObject[0].toLowerCase();
                 int gameObjectLocationX = Integer.parseInt(mazeObject[1]);
                 int gameObjectLocationY = Integer.parseInt(mazeObject[2]);
+                //nt pincode = Integer.parseInt(mazeObject[3]);
                 Tile tileWithObject = new Tile(gameObjectLocationX, gameObjectLocationY);
                 switch (gameObjectName) {
                     case "player":
@@ -57,7 +58,7 @@ public class LevelGetter {
                         break;
                 }
                 this.mazeTiles.add(tileWithObject);
-                System.out.println("name object:" + mazeObject[0] + " postitionX:" + mazeObject[1] + " postitionY:" + mazeObject[2]);
+                //System.out.println("name object:" + mazeObject[0] + " postitionX:" + mazeObject[1] + " postitionY:" + mazeObject[2]);
             }
         } catch (IOException e) {
             e.printStackTrace();

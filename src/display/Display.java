@@ -71,6 +71,7 @@ public class Display {
 
     public void setCurrentKeyCode(int pinCode) {
         statsMenu.changeKeyPinCode(pinCode);
+        System.out.println("Key picked up.");
     }
 
 //        public JPanel getJPanel(){

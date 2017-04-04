@@ -186,8 +186,7 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
-
-       public void tryPlayerMove(KeyEvent e) {
+    public void tryPlayerMove(KeyEvent e) {
         player1.move();
         int locationX;
         int locationY;
@@ -196,16 +195,28 @@ public class Game extends JPanel implements Runnable {
         locationY = this.player1.getLocationY();
 
         if (keyPressed == 38) { //up
-            //if(locationy)
-            this.player1.setLocationY(locationY - 1);
+            if (locationY > 1) {
+                this.player1.setLocationY(locationY - 1);
+            }
         } else if (keyPressed == 40) { //down
-            this.player1.setLocationY(locationY + 1);
+            if (locationY < 10) {
+                this.player1.setLocationY(locationY + 1);
+            }
         } else if (keyPressed == 37) {  //left
-            this.player1.setLocationX(locationX - 1);
+            if (locationX > 1) {
+                this.player1.setLocationX(locationX - 1);
+            }
         } else if (keyPressed == 39) {  //right
-            this.player1.setLocationX(locationX + 1);
+            if (locationX < 10) {
+                this.player1.setLocationX(locationX + 1);
+                
+                System.out.println(this.mazeMap[1][0].getStandingObject());
+                
+//                for (Tile[] tileOnMap : this.mazeMap) {
+//                    System.out.println(tileOnMap[1].getLocationX());
+//                    System.out.println(tileOnMap[1].getLocationY());
+//                }
+            }
         }
     }
 }
-
-

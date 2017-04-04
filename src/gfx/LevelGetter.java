@@ -75,7 +75,7 @@ public class LevelGetter {
         }
 
         for (int i = 0; i < 10; i++) {
-            System.out.println(Arrays.toString(newMazeMap[i]));
+            //System.out.println(Arrays.toString(newMazeMap[i]));
         }
 
         return newMazeMap;

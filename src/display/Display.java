@@ -8,6 +8,12 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -20,7 +26,7 @@ public class Display {
     private GameStatsMenu statsMenu;
     private JFrame frame;
     private Canvas canvas;
-//    private JPanel jpanel;
+    private JPanel menu;
 
     private String title;
     private int width, height;
@@ -44,22 +50,26 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-
+        frame.setJMenuBar(this.createMenubar());
+        
+        ////Inventory
+        this.statsMenu = new GameStatsMenu();
+        frame.add(this.statsMenu, BorderLayout.NORTH);
+        
+        ///Menu
+//        menu = new Menu();
+//        menu.addKeyListener(this.keyAdapter);
+//        menu.setPreferredSize(new Dimension(width, height));
+//        menu.requestFocusInWindow();
+//        frame.add(menu, BorderLayout.CENTER);
+        
+        ////Game
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-        frame.setJMenuBar(this.createMenubar());
-        this.statsMenu = new GameStatsMenu();
-        frame.add(this.statsMenu, BorderLayout.NORTH);
-
-        frame.add(canvas, BorderLayout.CENTER);
-//        jpanel = new JPanel();
-        //        jpanel.setPreferredSize(new Dimension(width, height));
-
-        frame.add(canvas);
-
         canvas.requestFocusInWindow();
-//        frame.add(jpanel);
+        frame.add(canvas, BorderLayout.CENTER);
+        
         frame.pack();
     }
 
@@ -94,8 +104,4 @@ public class Display {
         statsMenu.changeKeyPinCode(pinCode);
         System.out.println("Key picked up.");
     }
-
-//        public JPanel getJPanel(){
-    //            return jpanel;
-    //        }
 }

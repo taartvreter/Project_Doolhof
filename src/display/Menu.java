@@ -5,7 +5,7 @@
  */
 package display;
 
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import javax.swing.*;
 
 /**
@@ -13,5 +13,19 @@ import javax.swing.*;
  * @author hwpva
  */
 public class Menu extends JPanel {
-
+    
+    JButton start = new JButton("Start");
+    JButton levels = new JButton("Levels");
+    JButton quit = new JButton("Quit");
+    
+    public Menu(){
+        this.initComponents();
+    }
+    
+    private void initComponents() {
+        this.setLayout(new GridLayout(3, 1));
+        this.add(start);
+        this.add(levels);
+        this.add(quit);
+    }
 }

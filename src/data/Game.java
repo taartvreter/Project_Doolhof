@@ -60,6 +60,7 @@ public class Game extends JPanel implements Runnable {
         };
 
         display = new Display(title, width, height, keyWhisperer);
+        
         Assets.init();
 //soutce key bindings java swing: http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
         //keyListener 

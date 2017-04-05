@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 public class Key extends GameElement {
 
     private final int pinCode;
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public Key(int pinCode) {
         this.pinCode = pinCode;
@@ -25,6 +25,7 @@ public class Key extends GameElement {
         BufferedImage keyImage = Assets.key;
         Graphics2D keyDrawingCanvas = keyImage.createGraphics();
         keyDrawingCanvas.setColor(Color.red);
+        System.out.println("String drawen on image " + String.valueOf(this.pinCode));
         keyDrawingCanvas.drawString(String.valueOf(this.pinCode), 3, 23);
         keyDrawingCanvas.dispose();
         this.image = keyImage;

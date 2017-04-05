@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -48,26 +50,50 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
+        frame.setJMenuBar(this.createMenubar());
         
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
         
         ///Menu
-        menu = new Menu();
-        menu.addKeyListener(this.keyAdapter);
-        menu.setPreferredSize(new Dimension(width, height));
-        menu.requestFocusInWindow();
-        frame.add(menu, BorderLayout.CENTER);
+//        menu = new Menu();
+//        menu.addKeyListener(this.keyAdapter);
+//        menu.setPreferredSize(new Dimension(width, height));
+//        menu.requestFocusInWindow();
+//        frame.add(menu, BorderLayout.CENTER);
         
         ////Game
-//        canvas = new Canvas();
-//        canvas.addKeyListener(this.keyAdapter);
-//        canvas.setPreferredSize(new Dimension(width, height));
-//        canvas.requestFocusInWindow();
-//        frame.add(canvas, BorderLayout.CENTER);
+        canvas = new Canvas();
+        canvas.addKeyListener(this.keyAdapter);
+        canvas.setPreferredSize(new Dimension(width, height));
+        canvas.requestFocusInWindow();
+        frame.add(canvas, BorderLayout.CENTER);
         
         frame.pack();
+    }
+
+    private JMenuBar createMenubar() {
+        //source: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
+        JMenuBar menuB = new JMenuBar();
+
+        //FirstMenu
+        JMenu gameMenu = new JMenu("Game");
+        gameMenu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+
+        //startbutton
+        JMenuItem menuItem = new JMenuItem("Start", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, true));
+        gameMenu.add(menuItem);
+        //reset button
+        menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK, true));
+        gameMenu.add(menuItem);
+
+        menuB.add(gameMenu);
+
+        return menuB;
     }
 
     public Canvas getCanvas() {
@@ -76,5 +102,6 @@ public class Display {
 
     public void setCurrentKeyCode(int pinCode) {
         statsMenu.changeKeyPinCode(pinCode);
+        System.out.println("Key picked up.");
     }
 }

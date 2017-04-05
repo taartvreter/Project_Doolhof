@@ -14,11 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class Wall extends GameElement {
 
-    private final BufferedImage image;
-
-    public Wall() {
-        this.image = Assets.wall;
-    }
+    private final static BufferedImage image = Assets.wall;;
 
     @Override
     public boolean canWalkThrough() {
@@ -31,5 +27,8 @@ public class Wall extends GameElement {
     @Override
     public BufferedImage getImage() {
         return image;
+    }
+    public static void walkAgainstWall(){
+        System.out.println("You can't walk through a wall..");
     }
 }

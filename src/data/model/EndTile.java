@@ -21,7 +21,7 @@ public class EndTile extends Tile {
     /*  public BufferedImage getImage(){
 
     }*/
-    public void showWinningMessage() {
+    public static void showWinningMessage() {
         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Winnaar die je bent ;)!");
     }
 

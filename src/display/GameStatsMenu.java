@@ -32,5 +32,8 @@ public class GameStatsMenu extends JPanel {
 
     public void changeKeyPinCode(int keyPinCode) {
         this.keyPinCodeLabel.setText("KeyCode:" + keyPinCode);
+    
+    public void changeKeyPinCode(int keyPinCode){
+         this.keyPinCodeLabel.setText("U heeft een sleutel vast met de volgende waarde:  " + keyPinCode);
     }
 }

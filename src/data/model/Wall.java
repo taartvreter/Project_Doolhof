@@ -32,4 +32,7 @@ public class Wall extends GameElement {
     public BufferedImage getImage() {
         return image;
     }
+    public static void walkAgainstWall(){
+        System.out.println("You can't walk through a wall..");
+    }
 }

@@ -67,9 +67,9 @@ public class Display {
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-        canvas.requestFocusInWindow();
-        frame.add(canvas, BorderLayout.CENTER);
         
+        frame.add(canvas, BorderLayout.CENTER);
+        canvas.requestFocusInWindow();
         frame.pack();
     }
 

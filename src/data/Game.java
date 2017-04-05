@@ -157,7 +157,7 @@ public class Game extends JPanel implements Runnable {
 
     private void loadLevel() {
         LevelGetter levelLoader = new LevelGetter();
-        this.mazeMap = levelLoader.loadMapToArray();
+        this.mazeMap = levelLoader.loadMapToArray(1);
         this.player1 = levelLoader.loadPlayer();
     }
 

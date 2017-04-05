@@ -15,12 +15,13 @@ public class LevelGetter {
 
     private Player newCharater = null;
 
-    private final ArrayList<Tile> mazeTiles = new ArrayList<>();
+    private final ArrayList<Tile> replacableTiles = new ArrayList<>();
+    private final Tile[][] levelMap = new Tile[this.cols][this.rows];
 
-    public Tile[][] loadMapToArray() {
+    public Tile[][] loadMapToArray(int levelNumber) {
         this.resetAllTiles();
         //Source: https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
-        String fileLocation = "./res/gameData/maps/easy/maze1.csv";
+        String fileLocation = "./res/gameData/maps/maze" + levelNumber + ".csv";
         String line = "";
         String csvSplitBy = ";";
         try (BufferedReader br = new BufferedReader(new FileReader(fileLocation))) {
@@ -61,29 +62,32 @@ public class LevelGetter {
                         }
                         break;
                 }
-                this.mazeTiles.add(tileWithObject);
+                this.replacableTiles.add(tileWithObject);
                 //System.out.println("name object:" + mazeObject[0] + " postitionX:" + mazeObject[1] + " postitionY:" + mazeObject[2]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Tile[][] newMazeMap = new Tile[cols][rows];
-        for (int i = 0; i < this.cols; i++) {
-            for (int j = 0; j < 10; j++) {
-                newMazeMap[j][i] = new Tile(j, i);
+        this.resetMapTiles();
+        this.placeMapObjects();
+
+        return this.levelMap;
+    }
+
+    private void resetMapTiles() {
+        for (int i = 0; i < this.levelMap.length; i++) {
+            for (int j = 0; j < this.levelMap[i].length; j++) {
+                levelMap[j][i] = new Tile(j, i);
             }
         }
+    }
 
-        for (Tile GameElementTile : this.mazeTiles) {
-            newMazeMap[GameElementTile.getLocationY() - 1][GameElementTile.getLocationX() - 1] = GameElementTile;
+    private void placeMapObjects() {
+        for (Tile GameElementTile : this.replacableTiles) {
+            this.levelMap[GameElementTile.getLocationY() - 1][GameElementTile.getLocationX() - 1] = GameElementTile;
         }
 
-        for (int i = 0; i < 10; i++) {
-            //System.out.println(Arrays.toString(newMazeMap[i]));
-        }
-
-        return newMazeMap;
     }
 
     private void filterNonUsableGameElements() {
@@ -91,7 +95,7 @@ public class LevelGetter {
     }
 
     private void resetAllTiles() {
-        this.mazeTiles.clear();
+        this.replacableTiles.clear();
     }
 
     public Player loadPlayer() {

@@ -47,7 +47,7 @@ public class LevelGetterTest {
         System.out.println("loadMapToArray");
         LevelGetter instance = new LevelGetter();
         Tile[][] expResult = null;
-        Tile[][] result = instance.loadMapToArray();
+        Tile[][] result = instance.loadMapToArray(1);
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

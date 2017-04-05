@@ -5,7 +5,6 @@
  */
 package display;
 
-import data.model.Key;
 import java.awt.FlowLayout;
 import javax.swing.*;
 

@@ -89,6 +89,7 @@ public class Game extends JPanel implements Runnable {
 
         for (Tile[] tileOnMap : this.mazeMap) {
             for (int i = 0; i < tileOnMap.length; i++) {
+                
                 g.drawImage(tileOnMap[i].getImage(), TILEDRAWINGWIDTH * (tileOnMap[i].getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap[i].getLocationY() - 1), this);
             }
 

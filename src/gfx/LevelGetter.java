@@ -32,6 +32,8 @@ public class LevelGetter {
                 String gameObjectName = mazeObject[0].toLowerCase();
                 int gameObjectLocationX = Integer.parseInt(mazeObject[1]);
                 int gameObjectLocationY = Integer.parseInt(mazeObject[2]);
+                int keyNumber = Integer.parseInt(mazeObject[3]);
+                //System.out.println(keyNumber);
                 //nt pincode = Integer.parseInt(mazeObject[3]);
                 Tile tileWithObject = new Tile(gameObjectLocationX, gameObjectLocationY);
                 switch (gameObjectName) {
@@ -42,13 +44,15 @@ public class LevelGetter {
                         }
                         break;
                     case "barricade":
-                        tileWithObject.setStandingObject(new Barricade(42));
+                        tileWithObject.setStandingObject(new Barricade(keyNumber));
+
                         break;
                     case "wall":
                         tileWithObject.setStandingObject(new Wall());
                         break;
                     case "key":
-                        tileWithObject.setStandingObject(new Key(42));
+
+                        tileWithObject.setStandingObject(new Key(keyNumber));
                         break;
                     case "endtile":
                         if (!hasEndTile) {
@@ -95,7 +99,7 @@ public class LevelGetter {
         if (this.newCharater != null) {
             returningPlayer = this.newCharater;
         } else {
-            returningPlayer = new Player(1,1);
+            returningPlayer = new Player(1, 1);
         }
         return returningPlayer;
     }

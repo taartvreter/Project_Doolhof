@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 public class Key extends GameElement {
 
     private final int pinCode;
-    private final BufferedImage image;
+    private BufferedImage image;
 
     public Key(int pinCode) {
         this.pinCode = pinCode;

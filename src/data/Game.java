@@ -60,10 +60,8 @@ public class Game extends JPanel implements Runnable {
         };
 
         display = new Display(title, width, height, keyWhisperer);
-        
+
         Assets.init();
-//soutce key bindings java swing: http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
-        //keyListener 
 
         this.loadLevel();
     }
@@ -88,12 +86,10 @@ public class Game extends JPanel implements Runnable {
             g.drawLine(0, (i * 70), 700, (i * 70));
         }
 
-        for (Tile[] tileOnMap : this.mazeMap) {
-            for (int i = 0; i < tileOnMap.length; i++) {
-
-                g.drawImage(tileOnMap[i].getImage(), TILEDRAWINGWIDTH * (tileOnMap[i].getLocationX() - 1), TILEDRAWINGHEIGHT * (tileOnMap[i].getLocationY() - 1), this);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                g.drawImage(mazeMap[j][i].getImage(), TILEDRAWINGWIDTH * (mazeMap[j][i].getLocationX() - 1), TILEDRAWINGHEIGHT * (mazeMap[j][i].getLocationY() - 1), this);
             }
-
         }
         //draw character
         g.drawImage(player1.getImage(), TILEDRAWINGWIDTH * (player1.getLocationX() - 1), TILEDRAWINGHEIGHT * (player1.getLocationY() - 1), this);

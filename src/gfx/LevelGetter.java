@@ -1,3 +1,4 @@
+
 package gfx;
 
 import data.model.*;
@@ -8,10 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
 public class LevelGetter {
 
-    private int cols = 10;
-    private int rows = 10;
+    private final int cols = 10;
+    private final int rows = 10;
 
     private Player newCharater = null;
 
@@ -19,7 +22,7 @@ public class LevelGetter {
     private final Tile[][] levelMap = new Tile[this.cols][this.rows];
 
     public Tile[][] loadMapToArray(int levelNumber) {
-        this.resetAllTiles();
+        this.resetReplaceableTiles();
         //Source: https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
         String fileLocation = "./res/gameData/maps/maze" + levelNumber + ".csv";
         String line = "";
@@ -94,7 +97,7 @@ public class LevelGetter {
 
     }
 
-    private void resetAllTiles() {
+    private void resetReplaceableTiles() {
         this.replacableTiles.clear();
     }
 

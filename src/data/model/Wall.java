@@ -5,7 +5,7 @@
  */
 package data.model;
 
-import gfx.Assets;
+import gfx.Asset;
 import java.awt.image.BufferedImage;
 
 /**
@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class Wall extends GameElement {
 
-    private final static BufferedImage image = Assets.wall;;
+    private final BufferedImage image = Asset.wall;;
 
     @Override
     public boolean canWalkThrough() {

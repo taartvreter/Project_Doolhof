@@ -5,8 +5,10 @@
  */
 package data.model;
 
-import gfx.Assets;
+import gfx.Asset;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 /**
  *
@@ -20,11 +22,18 @@ public class Barricade extends GameElement {
 
     public Barricade(int pinCode) {
         this.pinCode = pinCode;
-        //init Image with keycode
-        BufferedImage barricadeWithoutPinImg = Assets.barricade;
-        barricadeWithoutPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
-        this.image = barricadeWithoutPinImg;
+        this.image = this.createImage();
 
+    }
+
+    private BufferedImage createImage() {
+        BufferedImage barricadeWithoutPinImg = Asset.barricade;
+        ColorModel cm = barricadeWithoutPinImg.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = barricadeWithoutPinImg.copyData(null);
+        BufferedImage barricadeWithPinImg = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+        barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
+        return barricadeWithPinImg;
     }
 
     public boolean checkKey(Key key) {

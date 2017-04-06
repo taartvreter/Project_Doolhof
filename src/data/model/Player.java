@@ -5,7 +5,7 @@
  */
 package data.model;
 
-import gfx.Assets;
+import gfx.Asset;
 import java.awt.image.BufferedImage;
 
 /**
@@ -31,7 +31,7 @@ public class Player {
     }
 
     public BufferedImage getImage() {
-        return Assets.player;
+        return Asset.player;
     }
 
     public void move(String move) {

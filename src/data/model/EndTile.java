@@ -5,7 +5,7 @@
  */
 package data.model;
 
-import gfx.Assets;
+import gfx.Asset;
 import java.awt.image.BufferedImage;
 
 /**
@@ -30,6 +30,6 @@ public class EndTile extends Tile {
      */
     @Override
     public BufferedImage getImage() {
-        return Assets.endTile;
+        return Asset.endTile;
     }
 }

@@ -6,6 +6,7 @@
 package display;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -51,23 +52,34 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-        
+        JButton b1 = new JButton();
+        b1.setSize(100, 25);
+        b1.setVisible(true);
+        b1.setText("Reset");
+        frame.setVisible(true);
+        frame.add(b1);
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //if button is pressed doe dit
+                System.out.println("Reset ingedrukt");
+            }
+        });
+
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
-        
+
         ///Menu
 //        menu = new Menu();
 //        menu.addKeyListener(this.keyAdapter);
 //        menu.setPreferredSize(new Dimension(400, 400));
 //        menu.requestFocusInWindow();
 //        frame.add(menu, BorderLayout.CENTER);
-        
         ////Game
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-        
+
         frame.add(canvas, BorderLayout.CENTER);
         canvas.requestFocusInWindow();
         frame.pack();

@@ -7,7 +7,7 @@ package data;
 
 import data.model.*;
 import display.Display;
-import gfx.Assets;
+import gfx.Asset;
 import gfx.LevelGetter;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -49,9 +49,9 @@ public class Game extends JPanel implements Runnable {
     private void init() {
         //Add the keyboard listener
         KeyAdapter keyWhisperer = new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//            }
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -61,9 +61,10 @@ public class Game extends JPanel implements Runnable {
 
         display = new Display(title, width, height, keyWhisperer);
 
-        Assets.init();
+        Asset.init();
 
         this.loadLevel();
+        
     }
 
     private void render() {
@@ -107,7 +108,6 @@ public class Game extends JPanel implements Runnable {
         long now;
         long lastTime = System.nanoTime();
         long timer = 0;
-        int ticks = 0;
 
         while (isRunning) {
 
@@ -117,13 +117,11 @@ public class Game extends JPanel implements Runnable {
             lastTime = now;
             render();
             if (delta >= 1) {
-                ticks++;
                 delta--;
             }
 
             if (timer >= 1000000000) {
                 //System.out.println("Ticks and Frames: " + ticks);
-                ticks = 0;
                 timer = 0;
             }
         }
@@ -153,6 +151,8 @@ public class Game extends JPanel implements Runnable {
 
     private void loadLevel() {
         LevelGetter levelLoader = new LevelGetter();
+
+        System.out.println(levelLoader.getNumberOfLevels());
         this.mazeMap = levelLoader.loadMapToArray(1);
         this.player1 = levelLoader.loadPlayer();
     }

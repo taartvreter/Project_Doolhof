@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Frenky
  */
-public class Assets {
+public class Asset {
 
     private static final int WIDTH = 70, HEIGHT = 70;
 

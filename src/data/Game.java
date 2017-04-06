@@ -241,6 +241,12 @@ public class Game extends JPanel implements Runnable {
                     System.out.println("You can't walk of board.");
                 }
                 break;
+                
+            case KeyEvent.VK_R:
+                 int lvl = Game.getLevel();
+                Game.loadLevel(lvl);
+                //canvas.requestFocusInWindow();
+             break;
 
         }
         if (canWalk) {

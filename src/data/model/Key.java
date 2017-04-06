@@ -6,6 +6,7 @@
 package data.model;
 
 import gfx.Asset;
+import gfx.ImageLoader;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,18 +25,23 @@ public class Key extends GameElement {
 
     public Key(int pinCode) {
         this.pinCode = pinCode;
-        //init Image with keycode
-        BufferedImage keyImage = Asset.key;
-        Graphics2D keyDrawingCanvas = keyImage.createGraphics();
-        keyDrawingCanvas.setColor(Color.red);
-        System.out.println("String drawn on image " + String.valueOf(this.pinCode));
-        keyDrawingCanvas.drawString(String.valueOf(this.pinCode), 3, 23);
-
         this.image = this.createImage();
     }
 
     private BufferedImage createImage() {
         BufferedImage keyWithoutPin = Asset.key;
+        ColorModel cm = keyWithoutPin.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = keyWithoutPin.copyData(null);
+        BufferedImage keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+        Graphics g = keyWithPin.createGraphics();
+        g.setColor(Color.red);
+        g.drawString(String.valueOf(this.pinCode), 3, 23);
+        g.dispose();
+        return keyWithPin;
+        /* 
+        
+        
         ColorModel cm = keyWithoutPin.getColorModel();
         System.out.println("");
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
@@ -45,10 +51,11 @@ public class Key extends GameElement {
             keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         } catch (java.lang.IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            keyWithPin = keyWithoutPin;
+            e.printStackTrace();
+            keyWithPin = Asset.key;
         }
         return keyWithPin;
-
+         */
         // barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
         //return barricadeWithPinImg;
         /*

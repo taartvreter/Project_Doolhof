@@ -23,7 +23,8 @@ public class Asset {
         player = sheet.crop(WIDTH, 0, WIDTH, HEIGHT);
         wall = sheet.crop(WIDTH * 2, 0, WIDTH, HEIGHT);
         endTile = sheet.crop(WIDTH * 3, 0, WIDTH, HEIGHT);
-        key = sheet.crop(WIDTH * 4, 0, WIDTH, HEIGHT);
+        //key = sheet.crop(WIDTH * 4, 0, WIDTH, HEIGHT);
+        key = ImageLoader.LoadImage("/textures/key.png");
 
     }
 }

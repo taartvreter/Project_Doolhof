@@ -153,7 +153,7 @@ public class Game extends JPanel implements Runnable {
         LevelGetter levelLoader = new LevelGetter();
 
         System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(3);
+        this.mazeMap = levelLoader.loadMapToArray(4);
         this.player1 = levelLoader.loadPlayer();
     }
 

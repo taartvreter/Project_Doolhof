@@ -51,21 +51,6 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-<<<<<<< HEAD
-        JButton b1 = new JButton();
-        b1.setSize(100, 25);
-        b1.setVisible(true);
-        b1.setText("Reset");
-        frame.setVisible(true);
-        frame.add(b1);
-        b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //if button is pressed doe dit
-                System.out.println("Reset ingedrukt");
-            }
-        });
-
-=======
         
         //Buttons
         JButton reset = new JButton("Reset");
@@ -79,8 +64,7 @@ public class Display {
                 canvas.requestFocusInWindow();
             }
         });
-        
->>>>>>> e2c09179d8df4fb2a5a97415f2d8ed27a226818c
+
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);

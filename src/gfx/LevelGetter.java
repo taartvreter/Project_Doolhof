@@ -94,10 +94,6 @@ public class LevelGetter {
 
     }
 
-    private void filterNonUsableGameElements() {
-
-    }
-
     private void resetReplaceableTiles() {
         this.replacableTiles.clear();
     }

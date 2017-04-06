@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
 /**
  *
@@ -24,8 +25,8 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel implements Runnable {
 
     //Game Models
-    private Player player1;
-    private Tile[][] mazeMap;
+    private static Player player1;
+    private static Tile[][] mazeMap;
 
     //Display Variables
     private Display display;
@@ -40,7 +41,7 @@ public class Game extends JPanel implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    int nextLevel = 1;
+    private static int nextLevel = 1;
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -171,12 +172,15 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void loadLevel(int levelUp) {
-        LevelGetter levelLoader = new LevelGetter();
+    public static int getLevel() {
+        return nextLevel;
+    }
 
-        System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(levelUp);
-        this.player1 = levelLoader.loadPlayer();
+    public static void loadLevel(int levelUp) {
+        LevelGetter levelLoader = new LevelGetter();
+//        System.out.println(levelLoader.getNumberOfLevels());
+        Game.mazeMap = levelLoader.loadMapToArray(levelUp);
+        Game.player1 = levelLoader.loadPlayer();
     }
 
     public void tryPlayerMove(KeyEvent e) {

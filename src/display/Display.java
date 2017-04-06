@@ -5,14 +5,13 @@
  */
 package display;
 
+import data.Game;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
@@ -52,6 +51,7 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
+<<<<<<< HEAD
         JButton b1 = new JButton();
         b1.setSize(100, 25);
         b1.setVisible(true);
@@ -65,6 +65,22 @@ public class Display {
             }
         });
 
+=======
+        
+        //Buttons
+        JButton reset = new JButton("Reset");
+        reset.setSize(100, 25);
+        frame.setVisible(true);
+        frame.add(reset);
+        reset.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int lvl = Game.getLevel();
+                Game.loadLevel(lvl);
+                canvas.requestFocusInWindow();
+            }
+        });
+        
+>>>>>>> e2c09179d8df4fb2a5a97415f2d8ed27a226818c
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);

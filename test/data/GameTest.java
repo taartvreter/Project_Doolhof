@@ -5,31 +5,31 @@
  */
 package data;
 
+import static com.oracle.nio.BufferSecrets.instance;
 import java.awt.event.KeyEvent;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static java.awt.event.KeyEvent.CHAR_UNDEFINED;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
  * @author hwpva
  */
 public class GameTest {
+
     
     public GameTest() {
+
     }
 
-    @Test
-    public void testTryPlayerMove() {
+    public void testTryPlayerMove1() {
         System.out.println("tryPlayerMove");
-        KeyEvent e = null;
-        Game instance = null;
-        instance.tryPlayerMove(e);
+        KeyEvent e = new KeyEvent(null, 1, 0L, KeyEvent.VK_UP, CHAR_UNDEFINED);
+        
+        //instance.tryPlayerMove(e);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
-    
+
 }

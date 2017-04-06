@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
 /**
  *
@@ -24,8 +25,8 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel implements Runnable {
 
     //Game Models
-    private Player player1;
-    private Tile[][] mazeMap;
+    private static Player player1;
+    private static Tile[][] mazeMap;
 
     //Display Variables
     private Display display;
@@ -39,6 +40,9 @@ public class Game extends JPanel implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
+
+    private static int nextLevel = 1;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -65,8 +69,7 @@ public class Game extends JPanel implements Runnable {
 
         Asset.init();
 
-        this.loadLevel();
-
+        this.loadLevel(nextLevel);
     }
 
     private void checkEndTile() {
@@ -77,6 +80,14 @@ public class Game extends JPanel implements Runnable {
         int endTileY = EndTile.getEndTilePositionY();  
         if(playerLocationX == endTileX && playerLocationY == endTileY){
             EndTile.showWinningMessage();
+            nextLevel++;
+            if(nextLevel == 4){
+                this.loadLevel(nextLevel);
+            } else {
+                EndTile.showWinningMessage();
+                nextLevel++;
+                this.loadLevel(nextLevel);
+            }
         }
     }
 
@@ -106,7 +117,7 @@ public class Game extends JPanel implements Runnable {
             }
         }
         //draw character
-        g.drawImage(player1.getImage(), TILEDRAWINGWIDTH * (player1.getLocationX() - 1), TILEDRAWINGHEIGHT * (player1.getLocationY() - 1), this);
+        g.drawImage(getPlayer1().getImage(), TILEDRAWINGWIDTH * (getPlayer1().getLocationX() - 1), TILEDRAWINGHEIGHT * (getPlayer1().getLocationY() - 1), this);
 
         //End Drawing
         bs.show();
@@ -162,18 +173,21 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void loadLevel() {
-        LevelGetter levelLoader = new LevelGetter();
+    public static int getLevel() {
+        return nextLevel;
+    }
 
-        System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(1);
-        this.player1 = levelLoader.loadPlayer();
+    public static void loadLevel(int levelUp) {
+        LevelGetter levelLoader = new LevelGetter();
+//        System.out.println(levelLoader.getNumberOfLevels());
+        Game.mazeMap = levelLoader.loadMapToArray(levelUp);
+        Game.player1 = levelLoader.loadPlayer();
     }
 
     public void tryPlayerMove(KeyEvent e) {
         int keyPressed = e.getKeyCode();
-        int locationX = this.player1.getLocationX();
-        int locationY = this.player1.getLocationY();
+        int locationX = this.getPlayer1().getLocationX();
+        int locationY = this.getPlayer1().getLocationY();
 
         int nextItemLocationX = 0;
         int nextItemLocationY = 0;
@@ -188,6 +202,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 1;
                     moveDirection = "up";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -198,6 +214,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 1;
                     moveDirection = "down";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -208,6 +226,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 2;
                     moveDirection = "left";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -218,6 +238,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX;
                     moveDirection = "right";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -226,21 +248,28 @@ public class Game extends JPanel implements Runnable {
             GameElement standingObject = this.mazeMap[nextItemLocationY][nextItemLocationX].getStandingObject();
 
             if (standingObject instanceof Barricade) {
-                Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                Barricade walkingAgainstBarricade = getPlayer1().putKeyInBarricade((Barricade) standingObject);
                 if (walkingAgainstBarricade == null) {
                     this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstBarricade);
-                    this.player1.move(moveDirection);
+                    this.getPlayer1().move(moveDirection);
                 }
             } else if (standingObject instanceof Key) {
                 this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
-                Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                Key walkingAgainstKey = getPlayer1().pickUpKey((Key) standingObject);
                 this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstKey);
-                this.player1.move(moveDirection);
+                this.getPlayer1().move(moveDirection);
             } else if (standingObject instanceof Wall) {
                 Wall.walkAgainstWall();
             } else {
-                this.player1.move(moveDirection);
+                this.getPlayer1().move(moveDirection);
             }
         }
+    }
+
+    /**
+     * @return the player1 added player for testing purposes
+     */
+    public Player getPlayer1() {
+        return player1;
     }
 }

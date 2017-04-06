@@ -14,8 +14,6 @@ import java.awt.image.BufferedImage;
  */
 public class Player {
 
-    private final boolean[][] surroundingWalkables = new boolean[3][3];
-
     private Key keyPocket;
     private int locationX;
     private int locationY;

@@ -7,6 +7,7 @@ package data.model;
 
 import gfx.Asset;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -34,9 +35,19 @@ public class Key extends GameElement {
     }
 
     private BufferedImage createImage() {
-        BufferedImage keyImage = Asset.key;
-        
-        return null;
+        BufferedImage keyWithoutPin = Asset.key;
+        ColorModel cm = keyWithoutPin.getColorModel();
+        System.out.println("");
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = keyWithoutPin.copyData(null);
+        BufferedImage keyWithPin;
+        try {
+            keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+        } catch (java.lang.IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            keyWithPin = keyWithoutPin;
+        }
+        return keyWithPin;
 
         // barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
         //return barricadeWithPinImg;

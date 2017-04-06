@@ -94,7 +94,6 @@ public class LevelGetter {
 
     }
 
-
     private void resetReplaceableTiles() {
         this.replacableTiles.clear();
     }

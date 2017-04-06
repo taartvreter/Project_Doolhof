@@ -40,7 +40,7 @@ public class Game extends JPanel implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    int nextLevel = 4;
+    int nextLevel = 1;
 
     public Game(String title, int width, int height) {
         this.width = width;

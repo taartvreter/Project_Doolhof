@@ -86,7 +86,7 @@ public class Display {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int lvl = Game.getLevel();
-                Game.loadLevel(lvl);
+                //Game.loadLevel(lvl);
                 canvas.requestFocusInWindow();
             }
         });

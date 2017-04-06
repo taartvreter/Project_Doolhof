@@ -39,9 +39,9 @@ public class Game extends JPanel implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
-    
+
     private int nextLevel = 1;
-    
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -66,20 +66,20 @@ public class Game extends JPanel implements Runnable {
         display = new Display(title, width, height, keyWhisperer);
 
         Asset.init();
-        
+
         this.loadLevel(nextLevel);
     }
-    
+
     private void checkEndTile() {
-        int playerLocationX = this.player1.getLocationX();
-        int playerLocationY = this.player1.getLocationY();
-        
+        int playerLocationX = this.getPlayer1().getLocationX();
+        int playerLocationY = this.getPlayer1().getLocationY();
+
         int endTileX = EndTile.getEndTilePositionX();
-        int endTileY = EndTile.getEndTilePositionY();  
-        if(playerLocationX == endTileX && playerLocationY == endTileY){
+        int endTileY = EndTile.getEndTilePositionY();
+        if (playerLocationX == endTileX && playerLocationY == endTileY) {
             EndTile.showWinningMessage();
             nextLevel++;
-            if(nextLevel == 4){
+            if (nextLevel == 4) {
                 this.loadLevel(nextLevel);
                 EndTile.showEndmessage();
             }
@@ -112,7 +112,7 @@ public class Game extends JPanel implements Runnable {
             }
         }
         //draw character
-        g.drawImage(player1.getImage(), TILEDRAWINGWIDTH * (player1.getLocationX() - 1), TILEDRAWINGHEIGHT * (player1.getLocationY() - 1), this);
+        g.drawImage(getPlayer1().getImage(), TILEDRAWINGWIDTH * (getPlayer1().getLocationX() - 1), TILEDRAWINGHEIGHT * (getPlayer1().getLocationY() - 1), this);
 
         //End Drawing
         bs.show();
@@ -178,8 +178,8 @@ public class Game extends JPanel implements Runnable {
 
     public void tryPlayerMove(KeyEvent e) {
         int keyPressed = e.getKeyCode();
-        int locationX = this.player1.getLocationX();
-        int locationY = this.player1.getLocationY();
+        int locationX = this.getPlayer1().getLocationX();
+        int locationY = this.getPlayer1().getLocationY();
 
         int nextItemLocationX = 0;
         int nextItemLocationY = 0;
@@ -194,6 +194,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 1;
                     moveDirection = "up";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -204,6 +206,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 1;
                     moveDirection = "down";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -214,6 +218,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX - 2;
                     moveDirection = "left";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -224,6 +230,8 @@ public class Game extends JPanel implements Runnable {
                     nextItemLocationX = locationX;
                     moveDirection = "right";
                     canWalk = true;
+                } else {
+                    System.out.println("You can't walk of board.");
                 }
                 break;
 
@@ -232,21 +240,28 @@ public class Game extends JPanel implements Runnable {
             GameElement standingObject = this.mazeMap[nextItemLocationY][nextItemLocationX].getStandingObject();
 
             if (standingObject instanceof Barricade) {
-                Barricade walkingAgainstBarricade = player1.putKeyInBarricade((Barricade) standingObject);
+                Barricade walkingAgainstBarricade = getPlayer1().putKeyInBarricade((Barricade) standingObject);
                 if (walkingAgainstBarricade == null) {
                     this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstBarricade);
-                    this.player1.move(moveDirection);
+                    this.getPlayer1().move(moveDirection);
                 }
             } else if (standingObject instanceof Key) {
                 this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
-                Key walkingAgainstKey = player1.pickUpKey((Key) standingObject);
+                Key walkingAgainstKey = getPlayer1().pickUpKey((Key) standingObject);
                 this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstKey);
-                this.player1.move(moveDirection);
+                this.getPlayer1().move(moveDirection);
             } else if (standingObject instanceof Wall) {
                 Wall.walkAgainstWall();
             } else {
-                this.player1.move(moveDirection);
+                this.getPlayer1().move(moveDirection);
             }
         }
+    }
+
+    /**
+     * @return the player1 added player for testing purposes
+     */
+    public Player getPlayer1() {
+        return player1;
     }
 }

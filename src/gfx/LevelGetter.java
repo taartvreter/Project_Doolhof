@@ -43,7 +43,6 @@ public class LevelGetter {
                     case "player":
                         if (newCharater == null) {
                             this.newCharater = new Player(gameObjectLocationX, gameObjectLocationY);
-                            //tileWithObject.setCharacter(new Player());
                         }
                         break;
                     case "barricade":
@@ -53,7 +52,6 @@ public class LevelGetter {
                         tileWithObject.setStandingObject(new Wall());
                         break;
                     case "key":
-
                         tileWithObject.setStandingObject(new Key(keyNumber));
                         break;
                     case "endtile":

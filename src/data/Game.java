@@ -39,9 +39,9 @@ public class Game extends JPanel implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
-    
-    private int nextLevel = 1;
-    
+
+    int nextLevel = 4;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -66,22 +66,25 @@ public class Game extends JPanel implements Runnable {
         display = new Display(title, width, height, keyWhisperer);
 
         Asset.init();
-        
+
         this.loadLevel(nextLevel);
     }
-    
+
     private void checkEndTile() {
         int playerLocationX = this.player1.getLocationX();
         int playerLocationY = this.player1.getLocationY();
-        
+
         int endTileX = EndTile.getEndTilePositionX();
-        int endTileY = EndTile.getEndTilePositionY();  
-        if(playerLocationX == endTileX && playerLocationY == endTileY){
-            EndTile.showWinningMessage();
-            nextLevel++;
-            if(nextLevel == 4){
-                this.loadLevel(nextLevel);
+        int endTileY = EndTile.getEndTilePositionY();
+        if (playerLocationX == endTileX && playerLocationY == endTileY) {
+            if (nextLevel == LevelGetter.getNumberOfLevels()) {
                 EndTile.showEndmessage();
+                nextLevel -= (LevelGetter.getNumberOfLevels() - 1);
+                this.loadLevel(nextLevel);
+            } else {
+                EndTile.showWinningMessage();
+                nextLevel++;
+                this.loadLevel(nextLevel);
             }
         }
     }
@@ -168,11 +171,11 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void loadLevel(int x) {
+    private void loadLevel(int levelUp) {
         LevelGetter levelLoader = new LevelGetter();
 
         System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(x);
+        this.mazeMap = levelLoader.loadMapToArray(levelUp);
         this.player1 = levelLoader.loadPlayer();
     }
 

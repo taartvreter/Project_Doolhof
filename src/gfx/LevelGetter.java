@@ -107,7 +107,7 @@ public class LevelGetter {
         return returningPlayer;
     }
 
-    public int getNumberOfLevels() {
+    public static int getNumberOfLevels() {
         int numberOfLevels = 0;
         try {
             numberOfLevels = (int) Files.list(Paths.get("./res/gameData/maps/")).count();

@@ -103,7 +103,7 @@ public class GameTest {
         System.out.println(secondPlayerState.getLocationX() + " :X");
         System.out.println(secondPlayerState.getLocationX() + " :Y");
         assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
-        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY() + 1, secondPlayerState.getLocationY());
+        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY() , secondPlayerState.getLocationY());
         System.out.println("");
     }
 

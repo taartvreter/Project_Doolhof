@@ -1,7 +1,3 @@
-key;1;5;100
-key;2;7;300
-key;1;9;400
-key;10;6;200
 barricade;3;1;100
 barricade;4;1;100
 barricade;5;1;89
@@ -27,13 +23,18 @@ barricade;9;6;330
 barricade;5;7;300
 barricade;9;7;303
 barricade;10;7;480
-barricade;7;8;400
+barricade;8;8;400
 barricade;8;9;900
 barricade;9;9;500
 barricade;10;9;400
 barricade;5;10;400
 barricade;8;10;800
 barricade;9;10;600
+endtile;10;10;0
+key;1;5;100
+key;2;7;300
+key;4;9;400
+key;10;6;200
 wall;3;4;0
 wall;3;5;0
 wall;3;6;0
@@ -48,4 +49,6 @@ wall;5;8;0
 wall;6;8;0
 wall;5;9;0
 wall;6;9;0
-endtile;10;10;0
+wall;7;2;0
+wall;7;3;0
+barricade;7;8;400

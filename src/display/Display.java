@@ -44,13 +44,13 @@ public class Display {
     private void createDisplay() {
         frame = new JFrame();
         frame.setTitle(title);
+        frame.setJMenuBar(this.createMenubar());
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-        frame.setJMenuBar(this.createMenubar());
         
         ////Inventory
         this.statsMenu = new GameStatsMenu();
@@ -59,7 +59,7 @@ public class Display {
         ///Menu
 //        menu = new Menu();
 //        menu.addKeyListener(this.keyAdapter);
-//        menu.setPreferredSize(new Dimension(width, height));
+//        menu.setPreferredSize(new Dimension(400, 400));
 //        menu.requestFocusInWindow();
 //        frame.add(menu, BorderLayout.CENTER);
         

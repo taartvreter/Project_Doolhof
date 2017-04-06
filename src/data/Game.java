@@ -39,7 +39,9 @@ public class Game extends JPanel implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
-
+    
+    private int nextLevel = 1;
+    
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -64,11 +66,10 @@ public class Game extends JPanel implements Runnable {
         display = new Display(title, width, height, keyWhisperer);
 
         Asset.init();
-
-        this.loadLevel();
-
+        
+        this.loadLevel(nextLevel);
     }
-
+    
     private void checkEndTile() {
         int playerLocationX = this.player1.getLocationX();
         int playerLocationY = this.player1.getLocationY();
@@ -77,6 +78,11 @@ public class Game extends JPanel implements Runnable {
         int endTileY = EndTile.getEndTilePositionY();  
         if(playerLocationX == endTileX && playerLocationY == endTileY){
             EndTile.showWinningMessage();
+            nextLevel++;
+            if(nextLevel == 4){
+                this.loadLevel(nextLevel);
+                EndTile.showEndmessage();
+            }
         }
     }
 
@@ -162,11 +168,11 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void loadLevel() {
+    private void loadLevel(int x) {
         LevelGetter levelLoader = new LevelGetter();
 
         System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(1);
+        this.mazeMap = levelLoader.loadMapToArray(x);
         this.player1 = levelLoader.loadPlayer();
     }
 

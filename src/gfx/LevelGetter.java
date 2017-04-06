@@ -23,7 +23,12 @@ public class LevelGetter {
     public Tile[][] loadMapToArray(int levelNumber) {
         this.resetReplaceableTiles();
         //Source: https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
+
         String fileLocation = "./res/gameData/maps/maze" + levelNumber + ".csv";
+        if (levelNumber == 0) {
+            fileLocation = "./res/testData/maps/testMaze.csv";
+            //open the secret test level.
+        }
         String line = "";
         String csvSplitBy = ";";
         try (BufferedReader br = new BufferedReader(new FileReader(fileLocation))) {
@@ -92,7 +97,6 @@ public class LevelGetter {
 //    private void filterNonUsableGameElements() {
 //
 //    }
-
     private void resetReplaceableTiles() {
         this.replacableTiles.clear();
     }

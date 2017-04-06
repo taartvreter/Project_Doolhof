@@ -180,6 +180,9 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void tryPlayerMove(KeyEvent e) {
+        System.out.println(e.paramString());
+        System.out.println(e.toString());
+        System.out.println(e.getWhen());
         int keyPressed = e.getKeyCode();
         int locationX = this.getPlayer1().getLocationX();
         int locationY = this.getPlayer1().getLocationY();

@@ -14,7 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;*/
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
@@ -58,11 +58,8 @@ public class GameTest {
         e = new KeyEvent(instance, KeyEvent.KEY_PRESSED, new Date().getTime(), KeyEvent.VK_RIGHT, KeyEvent.CHAR_UNDEFINED);
         
         instance.tryPlayerMove(e);
-        Player secondPlayerState = this.instance.getPlayer1();
-        assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
-        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY(), secondPlayerState.getLocationY());
-
-        //fail("The test case is a prototype.");
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

@@ -5,13 +5,13 @@
  */
 package display;
 
+import data.Game;
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
@@ -26,7 +26,6 @@ public class Display {
     private GameStatsMenu statsMenu;
     private JFrame frame;
     private Canvas canvas;
-    private JPanel menu;
 
     private String title;
     private int width, height;
@@ -55,19 +54,18 @@ public class Display {
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
-        
+
         ///Menu
 //        menu = new Menu();
 //        menu.addKeyListener(this.keyAdapter);
 //        menu.setPreferredSize(new Dimension(400, 400));
 //        menu.requestFocusInWindow();
 //        frame.add(menu, BorderLayout.CENTER);
-        
         ////Game
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-        
+
         frame.add(canvas, BorderLayout.CENTER);
         canvas.requestFocusInWindow();
         frame.pack();
@@ -82,13 +80,16 @@ public class Display {
         gameMenu.getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
 
-        //startbutton
-        JMenuItem menuItem = new JMenuItem("Start", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, true));
-        gameMenu.add(menuItem);
         //reset button
-        menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
+        JMenuItem menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK, true));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int lvl = Game.getLevel();
+                Game.loadLevel(lvl);
+                canvas.requestFocusInWindow();
+            }
+        });
         gameMenu.add(menuItem);
 
         menuB.add(gameMenu);

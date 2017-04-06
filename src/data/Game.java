@@ -24,8 +24,8 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel implements Runnable {
 
     //Game Models
-    private Player player1;
-    private Tile[][] mazeMap;
+    private static Player player1;
+    private static Tile[][] mazeMap;
 
     //Display Variables
     private Display display;
@@ -40,7 +40,8 @@ public class Game extends JPanel implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    private int nextLevel = 1;
+    private static int nextLevel = 1;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -77,9 +78,9 @@ public class Game extends JPanel implements Runnable {
         int endTileX = EndTile.getEndTilePositionX();
         int endTileY = EndTile.getEndTilePositionY();  
         if(playerLocationX == endTileX && playerLocationY == endTileY){
-            EndTile.showWinningMessage();
-            nextLevel++;
             if(nextLevel == 4){
+                EndTile.showEndmessage();
+                nextLevel -= LevelGetter.getNumberOfLevels() - 1;
                 this.loadLevel(nextLevel);
             } else {
                 EndTile.showWinningMessage();
@@ -171,12 +172,15 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void loadLevel(int levelUp) {
-        LevelGetter levelLoader = new LevelGetter();
+    public static int getLevel() {
+        return nextLevel;
+    }
 
-        System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(levelUp);
-        this.player1 = levelLoader.loadPlayer();
+    public static void loadLevel(int levelUp) {
+        LevelGetter levelLoader = new LevelGetter();
+//        System.out.println(levelLoader.getNumberOfLevels());
+        Game.mazeMap = levelLoader.loadMapToArray(levelUp);
+        Game.player1 = levelLoader.loadPlayer();
     }
 
     public void tryPlayerMove(KeyEvent e) {
@@ -240,6 +244,12 @@ public class Game extends JPanel implements Runnable {
                     System.out.println("You can't walk of board.");
                 }
                 break;
+                
+            case KeyEvent.VK_R:
+                 int lvl = Game.getLevel();
+                Game.loadLevel(lvl);
+                //canvas.requestFocusInWindow();
+             break;
 
         }
         if (canWalk) {

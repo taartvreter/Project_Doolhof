@@ -14,7 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;*/
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 
 /**
  *
@@ -22,10 +22,11 @@ import org.junit.Test;
  */
 public class GameTest {
 
-    private Game instance;
+    private final Game instance;
 
     public GameTest() {
-        this.instance = new Game("12123", 700, 700);
+        this.instance = new Game("A game title", 700, 700);
+        this.instance.loadTestLevel();
     }
 
     /**
@@ -34,32 +35,59 @@ public class GameTest {
     @Test
     public void testTryPlayerMoveOutOfBounds() {
         //Checks if the player, is still standing on the same location after trying out of the map.
-        System.out.println("tryPlayerMove");
+        System.out.println("testTryPlayerMoveOutOfBounds");
         Player firstStatePlayer = this.instance.getPlayer1();
         System.out.println(firstStatePlayer.getLocationX() + " :X");
         System.out.println(firstStatePlayer.getLocationX() + " :Y");
-        Date sd = new Date();
-        KeyEvent e = new KeyEvent(instance, KeyEvent.KEY_PRESSED, sd.getTime(), KeyEvent.VK_UP, KeyEvent.CHAR_UNDEFINED);
-        instance.tryPlayerMove(e);
+        instance.tryPlayerMove(KeyEvent.VK_UP);
         Player secondPlayerState = this.instance.getPlayer1();
+        System.out.println(secondPlayerState.getLocationX() + " :X");
+        System.out.println(secondPlayerState.getLocationX() + " :Y");
         assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
         assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY(), secondPlayerState.getLocationY());
     }
 
     @Test
-    public void testTryPlayerMoveAgainstWall() {
+    public void testTyPlayerMoveThroughWall() {
         //Checks if the player, is still standing on the same location.
-        System.out.println("tryPlayerMove");
+        System.out.println("testTyPlayerMoveThroughWall");
         Player firstStatePlayer = this.instance.getPlayer1();
         System.out.println(firstStatePlayer.getLocationX() + " :X");
         System.out.println(firstStatePlayer.getLocationX() + " :Y");
-        KeyEvent e = new KeyEvent(instance, KeyEvent.KEY_PRESSED, new Date().getTime(), KeyEvent.VK_UP, KeyEvent.CHAR_UNDEFINED);
-        instance.tryPlayerMove(e);
-        e = new KeyEvent(instance, KeyEvent.KEY_PRESSED, new Date().getTime(), KeyEvent.VK_RIGHT, KeyEvent.CHAR_UNDEFINED);
-        
-        instance.tryPlayerMove(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.tryPlayerMove(KeyEvent.VK_RIGHT);
+        Player secondPlayerState = this.instance.getPlayer1();
+        System.out.println(firstStatePlayer.getLocationX() + " :X");
+        System.out.println(firstStatePlayer.getLocationX() + " :Y");
+        assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
+        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY(), secondPlayerState.getLocationY());
+
+    }
+
+    @Test
+    public void testPlayerMoveToOtherTile() {
+        //Checks if the player, is still standing on the same location.
+        System.out.println("testPlayerMoveToOtherTile");
+        Player firstStatePlayer = this.instance.getPlayer1();
+        System.out.println(firstStatePlayer.getLocationX() + " :X");
+        System.out.println(firstStatePlayer.getLocationX() + " :Y");
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+         instance.tryPlayerMove(KeyEvent.VK_DOWN);
+          instance.tryPlayerMove(KeyEvent.VK_DOWN);
+           instance.tryPlayerMove(KeyEvent.VK_DOWN);
+                   instance.tryPlayerMove(KeyEvent.VK_DOWN);
+         instance.tryPlayerMove(KeyEvent.VK_DOWN);
+          instance.tryPlayerMove(KeyEvent.VK_DOWN);
+           instance.tryPlayerMove(KeyEvent.VK_DOWN);
+                   instance.tryPlayerMove(KeyEvent.VK_DOWN);
+         instance.tryPlayerMove(KeyEvent.VK_DOWN);
+          instance.tryPlayerMove(KeyEvent.VK_DOWN);
+           instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        Player secondPlayerState = this.instance.getPlayer1();
+        System.out.println(secondPlayerState.getLocationX() + " :X");
+        System.out.println(secondPlayerState.getLocationX() + " :Y");
+        assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
+        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY()+1, secondPlayerState.getLocationY());
+
     }
 
 }

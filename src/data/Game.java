@@ -42,7 +42,6 @@ public class Game extends JPanel implements Runnable {
 
     private static int nextLevel = 1;
 
-
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -59,7 +58,7 @@ public class Game extends JPanel implements Runnable {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                tryPlayerMove(e);
+                tryPlayerMove(e.getKeyCode());
                 checkEndTile();
             }
         };
@@ -74,11 +73,11 @@ public class Game extends JPanel implements Runnable {
     private void checkEndTile() {
         int playerLocationX = this.player1.getLocationX();
         int playerLocationY = this.player1.getLocationY();
-        
+
         int endTileX = EndTile.getEndTilePositionX();
-        int endTileY = EndTile.getEndTilePositionY();  
-        if(playerLocationX == endTileX && playerLocationY == endTileY){
-            if(nextLevel == 4){
+        int endTileY = EndTile.getEndTilePositionY();
+        if (playerLocationX == endTileX && playerLocationY == endTileY) {
+            if (nextLevel == 4) {
                 EndTile.showEndmessage();
                 nextLevel -= LevelGetter.getNumberOfLevels() - 1;
                 this.loadLevel(nextLevel);
@@ -183,11 +182,15 @@ public class Game extends JPanel implements Runnable {
         this.player1 = levelLoader.loadPlayer();
     }
 
-    public void tryPlayerMove(KeyEvent e) {
-        System.out.println(e.paramString());
-        System.out.println(e.toString());
-        System.out.println(e.getWhen());
-        int keyPressed = e.getKeyCode();
+    //load level
+    protected void loadTestLevel() {
+        LevelGetter levelLoader = new LevelGetter();
+//        System.out.println(levelLoader.getNumberOfLevels());
+        this.mazeMap = levelLoader.loadMapToArray(0);
+        this.player1 = levelLoader.loadPlayer();
+    }
+
+    public void tryPlayerMove(int keyPressedCode) {
         int locationX = this.getPlayer1().getLocationX();
         int locationY = this.getPlayer1().getLocationY();
 
@@ -196,7 +199,7 @@ public class Game extends JPanel implements Runnable {
         String moveDirection = "";
         boolean canWalk = false;
 
-        switch (keyPressed) {
+        switch (keyPressedCode) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
                 if (locationY > 1) {
@@ -205,7 +208,8 @@ public class Game extends JPanel implements Runnable {
                     moveDirection = "up";
                     canWalk = true;
                 } else {
-                    System.out.println("You can't walk of board.");
+
+                    System.out.println("You can't walk forward of board.");
                 }
                 break;
 
@@ -217,7 +221,7 @@ public class Game extends JPanel implements Runnable {
                     moveDirection = "down";
                     canWalk = true;
                 } else {
-                    System.out.println("You can't walk of board.");
+                    System.out.println("You can't walk backward of board.");
                 }
                 break;
 
@@ -229,7 +233,7 @@ public class Game extends JPanel implements Runnable {
                     moveDirection = "left";
                     canWalk = true;
                 } else {
-                    System.out.println("You can't walk of board.");
+                    System.out.println("You can't walk left of board.");
                 }
                 break;
 
@@ -241,15 +245,15 @@ public class Game extends JPanel implements Runnable {
                     moveDirection = "right";
                     canWalk = true;
                 } else {
-                    System.out.println("You can't walk of board.");
+                    System.out.println("You can't walk right of board.");
                 }
                 break;
-                
+
             case KeyEvent.VK_R:
                  int lvl = Game.getLevel();
                 this.loadLevel(lvl);
                 //canvas.requestFocusInWindow();
-             break;
+                break;
 
         }
         if (canWalk) {
@@ -259,17 +263,17 @@ public class Game extends JPanel implements Runnable {
                 Barricade walkingAgainstBarricade = getPlayer1().putKeyInBarricade((Barricade) standingObject);
                 if (walkingAgainstBarricade == null) {
                     this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstBarricade);
-                    this.getPlayer1().move(moveDirection);
+                    this.player1.move(moveDirection);
                 }
             } else if (standingObject instanceof Key) {
                 this.display.setCurrentKeyCode(((Key) standingObject).getKeyPinCode());
                 Key walkingAgainstKey = getPlayer1().pickUpKey((Key) standingObject);
                 this.mazeMap[nextItemLocationY][nextItemLocationX].setStandingObject(walkingAgainstKey);
-                this.getPlayer1().move(moveDirection);
+                this.player1.move(moveDirection);
             } else if (standingObject instanceof Wall) {
                 Wall.walkAgainstWall();
             } else {
-                this.getPlayer1().move(moveDirection);
+                this.player1.move(moveDirection);
             }
         }
     }

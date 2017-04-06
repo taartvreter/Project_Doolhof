@@ -89,24 +89,10 @@ public class Player {
     }
 
     /**
-     * @param locationX the locationX to set
-     */
-    public void setLocationX(int locationX) {
-        this.locationX = locationX;
-    }
-
-    /**
      * @return the locationY
      */
     public int getLocationY() {
         return locationY;
-    }
-
-    /**
-     * @param locationY the locationY to set
-     */
-    public void setLocationY(int locationY) {
-        this.locationY = locationY;
     }
 
     /**

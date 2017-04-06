@@ -29,11 +29,11 @@ public class EndTile extends Tile {
 
      }*/
     public static void showWinningMessage() {
-        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Winnaar die je bent)!");
+        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Winnaar die je bent!");
     }
     
     public static void showEndmessage(){
-        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Je hebt het spel uitgespeeld. Je gaat nu terug naar Level 1)!");
+        javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Je hebt het spel uitgespeeld. Je gaat nu terug naar Level 1!");
     }
 
     /**

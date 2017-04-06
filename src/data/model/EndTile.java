@@ -12,16 +12,16 @@ import java.awt.image.BufferedImage;
  *
  * @author hwpva
  */
-public class EndTile extends Tile {
+public class EndTile extends Tile  implements Location{
 
-    private static int positionX;
-    private static int positionY;
+    private static int locationX;
+    private static int locationY;
     
     public EndTile(int positionX, int positionY) {
 
         super(positionX, positionY);
-        this.positionX = positionX;
-        this.positionY = positionY;
+        this.locationX = positionX;
+        this.locationY = positionY;
 
     }
   
@@ -45,10 +45,10 @@ public class EndTile extends Tile {
     }
 
     public static int getEndTilePositionX() {
-        return positionX;
+        return locationX;
     }
     
     public static int getEndTilePositionY(){
-        return positionY;
+        return locationY;
     }
 }

@@ -67,7 +67,6 @@ public class GameTest {
         System.out.println("");
     }
 
-    /*
     @Test
     public void testPlayerMoveToOtherTile() {
         this.instance = new Game("A game title", 700, 700);
@@ -84,9 +83,9 @@ public class GameTest {
         System.out.println(secondPlayerState.getLocationX() + " :Y");
         assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
         assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY(), secondPlayerState.getLocationY());
-     System.out.println("");
+        System.out.println("");
     }
-     */
+
     @Test
     public void walkThroughBarricadeWithoutKey() {
         this.instance = new Game("A game title", 700, 700);
@@ -149,8 +148,8 @@ public class GameTest {
         assertEquals("Fail - The player didn't pickup the key", secondPlayerState.getKeyPinCode(), 43);
         System.out.println("");
     }
-    
-        @Test
+
+    @Test
     public void testWalkOnEndTile() {
         this.instance = new Game("A game title", 700, 700);
         this.instance.loadTestLevel();
@@ -166,7 +165,6 @@ public class GameTest {
         Player secondPlayerState = this.instance.getPlayer1();
         System.out.println(secondPlayerState.getLocationX() + " :X");
         System.out.println(secondPlayerState.getLocationX() + " :Y");
-        fail("d");
         System.out.println("");
     }
 

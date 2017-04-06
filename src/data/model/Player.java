@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * @author hwpva
  */
-public class Player {
+public class Player implements Location {
 
     private Key keyPocket;
     private int locationX;

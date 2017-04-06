@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author hwpva
  */
-public class Tile {
+public class Tile implements Location{
 
     private GameElement standingObject;
 

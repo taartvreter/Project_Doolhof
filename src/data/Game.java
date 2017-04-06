@@ -24,8 +24,8 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel implements Runnable {
 
     //Game Models
-    private static Player player1;
-    private static Tile[][] mazeMap;
+    private Player player1;
+    private Tile[][] mazeMap;
 
     //Display Variables
     private Display display;
@@ -176,11 +176,11 @@ public class Game extends JPanel implements Runnable {
         return nextLevel;
     }
 
-    public static void loadLevel(int levelUp) {
+    public void loadLevel(int levelUp) {
         LevelGetter levelLoader = new LevelGetter();
 //        System.out.println(levelLoader.getNumberOfLevels());
-        Game.mazeMap = levelLoader.loadMapToArray(levelUp);
-        Game.player1 = levelLoader.loadPlayer();
+        this.mazeMap = levelLoader.loadMapToArray(levelUp);
+        this.player1 = levelLoader.loadPlayer();
     }
 
     public void tryPlayerMove(KeyEvent e) {
@@ -247,7 +247,7 @@ public class Game extends JPanel implements Runnable {
                 
             case KeyEvent.VK_R:
                  int lvl = Game.getLevel();
-                Game.loadLevel(lvl);
+                this.loadLevel(lvl);
                 //canvas.requestFocusInWindow();
              break;
 

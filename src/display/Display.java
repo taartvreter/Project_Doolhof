@@ -43,7 +43,7 @@ public class Display {
     private void createDisplay() {
         frame = new JFrame();
         frame.setTitle(title);
-        frame.setJMenuBar(this.createMenubar());
+//        frame.setJMenuBar(this.createMenubar());
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -54,23 +54,16 @@ public class Display {
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
-
-        ///Menu
-//        menu = new Menu();
-//        menu.addKeyListener(this.keyAdapter);
-//        menu.setPreferredSize(new Dimension(400, 400));
-//        menu.requestFocusInWindow();
-//        frame.add(menu, BorderLayout.CENTER);
+        
         ////Game
         canvas = new Canvas();
         canvas.addKeyListener(this.keyAdapter);
         canvas.setPreferredSize(new Dimension(width, height));
-
         frame.add(canvas, BorderLayout.CENTER);
         canvas.requestFocusInWindow();
         frame.pack();
     }
-
+    
     private JMenuBar createMenubar() {
         //source: https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
         JMenuBar menuB = new JMenuBar();
@@ -86,7 +79,7 @@ public class Display {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int lvl = Game.getLevel();
-                Game.loadLevel(lvl);
+//                Game.loadLevel(lvl);
                 canvas.requestFocusInWindow();
             }
         });

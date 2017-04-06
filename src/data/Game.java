@@ -78,9 +78,9 @@ public class Game extends JPanel implements Runnable {
         int endTileX = EndTile.getEndTilePositionX();
         int endTileY = EndTile.getEndTilePositionY();  
         if(playerLocationX == endTileX && playerLocationY == endTileY){
-            EndTile.showWinningMessage();
-            nextLevel++;
             if(nextLevel == 4){
+                EndTile.showEndmessage();
+                nextLevel -= LevelGetter.getNumberOfLevels() - 1;
                 this.loadLevel(nextLevel);
             } else {
                 EndTile.showWinningMessage();

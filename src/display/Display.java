@@ -26,7 +26,6 @@ public class Display {
     private GameStatsMenu statsMenu;
     private JFrame frame;
     private Canvas canvas;
-    private JPanel menu;
 
     private String title;
     private int width, height;
@@ -52,19 +51,6 @@ public class Display {
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
         
-        //Buttons
-        JButton reset = new JButton("Reset");
-        reset.setSize(100, 25);
-        frame.setVisible(true);
-        frame.add(reset);
-        reset.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int lvl = Game.getLevel();
-                Game.loadLevel(lvl);
-                canvas.requestFocusInWindow();
-            }
-        });
-
         ////Inventory
         this.statsMenu = new GameStatsMenu();
         frame.add(this.statsMenu, BorderLayout.NORTH);
@@ -94,13 +80,16 @@ public class Display {
         gameMenu.getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
 
-        //startbutton
-        JMenuItem menuItem = new JMenuItem("Start", KeyEvent.VK_R);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, true));
-        gameMenu.add(menuItem);
         //reset button
-        menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
+        JMenuItem menuItem = new JMenuItem("Reset", KeyEvent.VK_R);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK, true));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int lvl = Game.getLevel();
+                Game.loadLevel(lvl);
+                canvas.requestFocusInWindow();
+            }
+        });
         gameMenu.add(menuItem);
 
         menuB.add(gameMenu);

@@ -71,23 +71,21 @@ public class GameTest {
         System.out.println(firstStatePlayer.getLocationX() + " :X");
         System.out.println(firstStatePlayer.getLocationX() + " :Y");
         instance.tryPlayerMove(KeyEvent.VK_DOWN);
-         instance.tryPlayerMove(KeyEvent.VK_DOWN);
-          instance.tryPlayerMove(KeyEvent.VK_DOWN);
-           instance.tryPlayerMove(KeyEvent.VK_DOWN);
-                   instance.tryPlayerMove(KeyEvent.VK_DOWN);
-         instance.tryPlayerMove(KeyEvent.VK_DOWN);
-          instance.tryPlayerMove(KeyEvent.VK_DOWN);
-           instance.tryPlayerMove(KeyEvent.VK_DOWN);
-                   instance.tryPlayerMove(KeyEvent.VK_DOWN);
-         instance.tryPlayerMove(KeyEvent.VK_DOWN);
-          instance.tryPlayerMove(KeyEvent.VK_DOWN);
-           instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
+        instance.tryPlayerMove(KeyEvent.VK_DOWN);
         Player secondPlayerState = this.instance.getPlayer1();
         System.out.println(secondPlayerState.getLocationX() + " :X");
         System.out.println(secondPlayerState.getLocationX() + " :Y");
         assertEquals("The player did walk out of x bounds", firstStatePlayer.getLocationX(), secondPlayerState.getLocationX());
-        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY()+1, secondPlayerState.getLocationY());
-
+        assertEquals("The player did walk out of y bounds", firstStatePlayer.getLocationY() + 1, secondPlayerState.getLocationY());
     }
-
 }

@@ -39,36 +39,6 @@ public class Key extends GameElement {
         g.drawString(String.valueOf(this.pinCode), 3, 23);
         g.dispose();
         return keyWithPin;
-        /* 
-        
-        
-        ColorModel cm = keyWithoutPin.getColorModel();
-        System.out.println("");
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = keyWithoutPin.copyData(null);
-        BufferedImage keyWithPin;
-        try {
-            keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-        } catch (java.lang.IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            keyWithPin = Asset.key;
-        }
-        return keyWithPin;
-         */
-        // barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
-        //return barricadeWithPinImg;
-        /*
-        BufferedImage keyWithoutPin = Asset.key;
-        ColorModel cm = keyWithoutPin.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = keyWithoutPin.copyData(null);
-        BufferedImage keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-        /*
-        
-        BufferedImage barricadeWithPinImg = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-        barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
-        return keyWithPin;*/
     }
 
     @Override

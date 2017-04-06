@@ -14,13 +14,20 @@ import java.awt.image.BufferedImage;
  */
 public class EndTile extends Tile {
 
+    private static int positionX;
+    private static int positionY;
+    
     public EndTile(int positionX, int positionY) {
-        super(positionX, positionY);
-    }
 
+        super(positionX, positionY);
+        this.positionX = positionX;
+        this.positionY = positionY;
+
+    }
+  
     /*  public BufferedImage getImage(){
 
-    }*/
+     }*/
     public static void showWinningMessage() {
         javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Winnaar die je bent ;)!");
     }
@@ -31,5 +38,13 @@ public class EndTile extends Tile {
     @Override
     public BufferedImage getImage() {
         return Asset.endTile;
+    }
+
+    public static int getEndTilePositionX() {
+        return positionX;
+    }
+    
+    public static int getEndTilePositionY(){
+        return positionY;
     }
 }

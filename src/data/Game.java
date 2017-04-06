@@ -9,6 +9,7 @@ import data.model.*;
 import display.Display;
 import gfx.Asset;
 import gfx.LevelGetter;
+import data.model.EndTile;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
@@ -56,6 +57,7 @@ public class Game extends JPanel implements Runnable {
             @Override
             public void keyReleased(KeyEvent e) {
                 tryPlayerMove(e);
+                checkEndTile();
             }
         };
 
@@ -64,7 +66,18 @@ public class Game extends JPanel implements Runnable {
         Asset.init();
 
         this.loadLevel();
+
+    }
+
+    private void checkEndTile() {
+        int playerLocationX = this.player1.getLocationX();
+        int playerLocationY = this.player1.getLocationY();
         
+        int endTileX = EndTile.getEndTilePositionX();
+        int endTileY = EndTile.getEndTilePositionY();  
+        if(playerLocationX == endTileX && playerLocationY == endTileY){
+            EndTile.showWinningMessage();
+        }
     }
 
     private void render() {
@@ -153,7 +166,7 @@ public class Game extends JPanel implements Runnable {
         LevelGetter levelLoader = new LevelGetter();
 
         System.out.println(levelLoader.getNumberOfLevels());
-        this.mazeMap = levelLoader.loadMapToArray(4);
+        this.mazeMap = levelLoader.loadMapToArray(1);
         this.player1 = levelLoader.loadPlayer();
     }
 

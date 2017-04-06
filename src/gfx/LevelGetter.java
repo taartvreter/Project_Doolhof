@@ -2,16 +2,13 @@ package gfx;
 
 import data.model.*;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.shape.Path;
 
 public class LevelGetter {
 
@@ -94,6 +91,10 @@ public class LevelGetter {
 
     }
 
+//    private void filterNonUsableGameElements() {
+//
+//    }
+
     private void resetReplaceableTiles() {
         this.replacableTiles.clear();
     }
@@ -111,7 +112,7 @@ public class LevelGetter {
     public int getNumberOfLevels() {
         int numberOfLevels = 0;
         try {
-            numberOfLevels = (int) Files.list(Paths.get("./res/gameData/maps")).count();
+            numberOfLevels = (int) Files.list(Paths.get("./res/gameData/maps/")).count();
         } catch (IOException ex) {
             Logger.getLogger(LevelGetter.class.getName()).log(Level.SEVERE, null, ex);
         }

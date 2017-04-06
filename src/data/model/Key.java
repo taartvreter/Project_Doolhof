@@ -35,6 +35,7 @@ public class Key extends GameElement {
 
     private BufferedImage createImage() {
         BufferedImage keyImage = Asset.key;
+        
         return null;
 
         // barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);

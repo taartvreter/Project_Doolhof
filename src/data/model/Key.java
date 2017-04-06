@@ -24,25 +24,18 @@ public class Key extends GameElement {
     public Key(int pinCode) {
         this.pinCode = pinCode;
         //init Image with keycode
-//        BufferedImage keyImage = Asset.key;
-//        Graphics2D keyDrawingCanvas = keyImage.createGraphics();
-//        keyDrawingCanvas.setColor(Color.red);
-//        System.out.println("String drawn on image " + String.valueOf(this.pinCode));
-//        if (this.pinCode == 21) {
-//            System.out.println("das");
-//            keyDrawingCanvas.drawString(String.valueOf(this.pinCode), 3, 23);
-//        }
+        BufferedImage keyImage = Asset.key;
+        Graphics2D keyDrawingCanvas = keyImage.createGraphics();
+        keyDrawingCanvas.setColor(Color.red);
+        System.out.println("String drawn on image " + String.valueOf(this.pinCode));
+        keyDrawingCanvas.drawString(String.valueOf(this.pinCode), 3, 23);
 
         this.image = this.createImage();
     }
 
     private BufferedImage createImage() {
-        BufferedImage keyWithoutPin = Asset.key;
-        ColorModel cm = keyWithoutPin.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = keyWithoutPin.copyData(null);
-        BufferedImage keyWithPin = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-        return keyWithPin;
+        BufferedImage keyImage = Asset.key;
+        return null;
 
         // barricadeWithPinImg.createGraphics().drawString(String.valueOf(this.pinCode), 3, 23);
         //return barricadeWithPinImg;

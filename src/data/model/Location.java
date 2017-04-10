@@ -9,7 +9,7 @@ package data.model;
  *
  * @author hwpva
  */
-public interface Location {
+public interface position {
         int getLocationX();
         int getLocationY();
 }
